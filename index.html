@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Companhia Vermelha — Turismo, cultura e conhecimento</title>
+<meta name="description" content="Companhia Vermelha: viagens de turismo, cultura, pesquisa e missões institucionais para Cuba, China e Vietnã.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#FFFFFF',
+          mist: '#F6F5F2',
+          ink: '#1D1B1A',
+          inksoft: '#5B5652',
+          red: { DEFAULT: '#B8203C', deep: '#7A1029', mist: '#FBEAEE' },
+          gold: { DEFAULT: '#B4933A', deep: '#83691F', mist: '#F6EFDA' },
+          line: '#E8E4DE',
+        },
+        fontFamily: {
+          display: ['Manrope', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-sans text-ink antialiased">
+
+<a href="#conteudo" class="skip-link font-display font-semibold text-sm">Pular para o conteúdo</a>
+
+<!-- SVG SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ic-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+    <symbol id="ic-close" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></symbol>
+    <symbol id="ic-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+    <symbol id="ic-chevron-left" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></symbol>
+    <symbol id="ic-chevron-right" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></symbol>
+    <symbol id="ic-pin" viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+    <symbol id="ic-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+    <symbol id="ic-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8l-4 4-4 8 4-4 4-8z"/></symbol>
+    <symbol id="ic-cap" viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M6 10.5V15c0 1.3 2.7 3 6 3s6-1.7 6-3v-4.5"/><line x1="22" y1="8" x2="22" y2="14"/></symbol>
+    <symbol id="ic-book" viewBox="0 0 24 24"><path d="M12 6C10 4 6 4 4 5v14c2-1 6-1 8 1 2-2 6-2 8-1V5c-2-1-6-1-8 1z"/><line x1="12" y1="6" x2="12" y2="20"/></symbol>
+    <symbol id="ic-building" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8" y1="7" x2="8" y2="7.01"/><line x1="12" y1="7" x2="12" y2="7.01"/><line x1="16" y1="7" x2="16" y2="7.01"/><line x1="8" y1="11" x2="8" y2="11.01"/><line x1="12" y1="11" x2="12" y2="11.01"/><line x1="16" y1="11" x2="16" y2="11.01"/><line x1="8" y1="15" x2="8" y2="15.01"/><line x1="16" y1="15" x2="16" y2="15.01"/><line x1="10" y1="21" x2="10" y2="17"/><line x1="14" y1="21" x2="14" y2="17"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12.5 11 15.5 16 9"/></symbol>
+    <symbol id="ic-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="ic-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></symbol>
+    <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="ic-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></symbol>
+    <symbol id="ic-users" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.3"/><path d="M3.5 19c0-3 2.5-5.3 5.5-5.3s5.5 2.3 5.5 5.3"/><circle cx="17.3" cy="9.7" r="2.6"/><path d="M15.2 13.9c2.3.2 4.3 2.2 4.3 5.1"/></symbol>
+    <symbol id="ic-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="ic-message" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="ic-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z"/><circle cx="17.6" cy="6.4" r="0.6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="ic-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+    <symbol id="ic-flask" viewBox="0 0 24 24"><path d="M9 2h6"/><path d="M10 2v6.2L4.6 18a2 2 0 0 0 1.8 3h11.2a2 2 0 0 0 1.8-3L14 8.2V2"/><line x1="8" y1="14" x2="16" y2="14"/></symbol>
+  </defs>
+</svg>
+
+
+<!-- HEADER -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50">
+  <div class="site-header-inner max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
+    <a href="#inicio" class="site-brand" aria-label="Companhia Vermelha — início">
+      <img src="assets/images/logo-companhia-vermelha.png" alt="Companhia Vermelha — viagens para países comunistas" class="brand-logo">
+    </a>
+
+    <nav class="hidden xl:flex items-center gap-5 font-semibold text-[13px] text-ink" aria-label="Navegação principal">
+      <a href="#inicio" class="nav-link">Início</a>
+      <a href="#destinos" class="nav-link">Destinos</a>
+      <a href="#experiencias" class="nav-link">Experiências</a>
+      <a href="#educacional" class="nav-link">Viagens Educacionais</a>
+      <a href="#institucional" class="nav-link">Institucional</a>
+      <a href="#sobre" class="nav-link">Sobre Nós</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#contato" class="nav-link">Contato</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="#planejar" class="hidden md:inline-flex btn-primary items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold font-display">
+        Planejar minha viagem
+        <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+      </a>
+      <button id="menu-toggle" class="xl:hidden w-11 h-11 flex items-center justify-center rounded-full border border-line bg-white" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+        <svg class="w-5 h-5" id="menu-icon"><use href="#ic-menu"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- mobile nav -->
+  <div id="mobile-menu" class="xl:hidden max-h-0 opacity-0 overflow-hidden bg-white border-t border-line">
+    <nav class="flex flex-col px-6 py-4 gap-1 font-medium" aria-label="Navegação móvel">
+      <a href="#inicio" class="mob-link py-2.5 border-b border-line">Início</a>
+      <a href="#destinos" class="mob-link py-2.5 border-b border-line">Destinos</a>
+      <a href="#experiencias" class="mob-link py-2.5 border-b border-line">Experiências</a>
+      <a href="#educacional" class="mob-link py-2.5 border-b border-line">Viagens Educacionais</a>
+      <a href="#institucional" class="mob-link py-2.5 border-b border-line">Institucional</a>
+      <a href="#sobre" class="mob-link py-2.5 border-b border-line">Sobre Nós</a>
+      <a href="#faq" class="mob-link py-2.5 border-b border-line">FAQ</a>
+      <a href="#contato" class="mob-link py-2.5 border-b border-line">Contato</a>
+      <a href="#planejar" class="mob-link btn-primary text-center rounded-full px-5 py-3 mt-4 font-display font-semibold">Planejar minha viagem</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- HERO -->
+<section id="inicio" class="relative pt-44 pb-24 md:pt-52 md:pb-32 overflow-hidden bg-white">
+  <div class="absolute inset-0 -z-10" style="background:radial-gradient(ellipse at 80% 0%, #FBEAEE 0%, transparent 55%), radial-gradient(ellipse at 0% 100%, #F6EFDA 0%, transparent 45%);"></div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <p class="inline-flex items-center gap-2 text-red font-semibold text-sm tracking-wide uppercase font-display mb-6">
+        <svg class="w-4 h-4"><use href="#ic-pin"/></svg> Cuba · China · Vietnã
+      </p>
+      <h1 class="font-display font-800 text-[2.6rem] leading-[1.08] md:text-6xl md:leading-[1.06] tracking-tight text-ink">
+        Conheça o mundo por <span class="text-red">novas perspectivas.</span>
+      </h1>
+      <p class="mt-6 text-lg text-inksoft max-w-lg leading-relaxed">
+        Turismo, cultura, história e conhecimento em experiências cuidadosamente planejadas por Cuba, China e Vietnã.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#destinos" class="btn-primary rounded-full px-7 py-3.5 font-display font-semibold inline-flex items-center gap-2">
+          Explorar destinos <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+        </a>
+        <a href="#educacional" class="btn-ghost rounded-full px-7 py-3.5 font-display font-semibold text-ink">
+          Viagens educacionais
+        </a>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] text-inksoft font-medium">
+        <span>Turismo</span><span class="text-gold">•</span>
+        <span>Cultura</span><span class="text-gold">•</span>
+        <span>Pesquisa</span><span class="text-gold">•</span>
+        <span>Educação</span><span class="text-gold">•</span>
+        <span>Experiências Institucionais</span>
+      </div>
+    </div>
+
+    <div class="reveal relative" aria-hidden="true">
+      <svg viewBox="0 0 480 480" class="w-full max-w-md mx-auto">
+        <circle cx="240" cy="240" r="200" fill="none" stroke="#E8E4DE" stroke-width="1"/>
+        <circle cx="240" cy="240" r="150" fill="none" stroke="#E8E4DE" stroke-width="1"/>
+        <ellipse cx="240" cy="240" rx="200" ry="70" fill="none" stroke="#E8E4DE" stroke-width="1"/>
+        <ellipse cx="240" cy="240" rx="200" ry="140" fill="none" stroke="#E8E4DE" stroke-width="1"/>
+        <line x1="40" y1="240" x2="440" y2="240" stroke="#E8E4DE" stroke-width="1"/>
+        <line x1="240" y1="40" x2="240" y2="440" stroke="#E8E4DE" stroke-width="1"/>
+
+        <path class="route-dash" d="M120 190 C 180 120, 300 130, 340 175 S 300 300, 210 300" fill="none" stroke="#B8203C" stroke-width="2"/>
+
+        <g>
+          <circle cx="120" cy="190" r="16" fill="#FBEAEE"/>
+          <circle class="pin-pulse" cx="120" cy="190" r="11" fill="none" stroke="#B8203C" stroke-width="1.5"/>
+          <circle cx="120" cy="190" r="6" fill="#B8203C"/>
+        </g>
+        <g>
+          <circle cx="340" cy="175" r="16" fill="#F6EFDA"/>
+          <circle class="pin-pulse" cx="340" cy="175" r="11" fill="none" stroke="#B4933A" stroke-width="1.5" style="animation-delay:.8s"/>
+          <circle cx="340" cy="175" r="6" fill="#B4933A"/>
+        </g>
+        <g>
+          <circle cx="210" cy="300" r="16" fill="#FBEAEE"/>
+          <circle class="pin-pulse" cx="210" cy="300" r="11" fill="none" stroke="#B8203C" stroke-width="1.5" style="animation-delay:1.6s"/>
+          <circle cx="210" cy="300" r="6" fill="#B8203C"/>
+        </g>
+
+        <text x="96" y="168" font-family="Manrope" font-size="13" font-weight="700" fill="#1D1B1A">Cuba</text>
+        <text x="316" y="153" font-family="Manrope" font-size="13" font-weight="700" fill="#1D1B1A">China</text>
+        <text x="186" y="330" font-family="Manrope" font-size="13" font-weight="700" fill="#1D1B1A">Vietnã</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="divider-route py-2" aria-hidden="true"><span class="line"></span><svg class="w-4 h-4"><use href="#ic-send"/></svg><span class="line"></span></div>
+
+<!-- DESTINOS -->
+<section id="destinos" class="py-24 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Destinos</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Explore nossos destinos</h2>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-8">
+      <!-- Cuba -->
+      <article class="dest-card reveal group rounded-[20px] border border-line overflow-hidden bg-white flex flex-col">
+        <div class="dest-media h-56 relative" style="background:#7A1029;">
+          <img src="assets/images/cuba.jpg" alt="Carros clássicos diante de fachadas coloridas em Havana, Cuba" class="destination-photo" loading="lazy">
+          <div class="destination-overlay" aria-hidden="true"></div>
+          <span class="destination-label">Havana · Cuba</span>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-display font-800 text-xl">Cuba</h3>
+          <p class="mt-3 text-inksoft text-[15px] leading-relaxed flex-1">História, arquitetura, música, cultura caribenha e uma sociedade única para conhecer de perto.</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Cultura</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">História</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Arquitetura</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Pesquisa</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Turismo</span>
+          </div>
+          <a href="#planejar" data-destino="Cuba" class="dest-cta mt-6 inline-flex items-center gap-2 font-display font-semibold text-red">
+            Conhecer Cuba <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- China -->
+      <article class="dest-card reveal group rounded-[20px] border border-line overflow-hidden bg-white flex flex-col" style="transition-delay:.08s">
+        <div class="dest-media h-56 relative" style="background:#7A1029;">
+          <img src="assets/images/china.jpg" alt="Grande Muralha atravessando as montanhas da China" class="destination-photo" loading="lazy">
+          <div class="destination-overlay" aria-hidden="true"></div>
+          <span class="destination-label">Grande Muralha · China</span>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-display font-800 text-xl">China</h3>
+          <p class="mt-3 text-inksoft text-[15px] leading-relaxed flex-1">Uma jornada entre tradições milenares, megacidades, inovação tecnológica e transformações sociais.</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">História</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Tecnologia</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Cultura</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Economia</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Turismo</span>
+          </div>
+          <a href="#planejar" data-destino="China" class="dest-cta mt-6 inline-flex items-center gap-2 font-display font-semibold text-red">
+            Conhecer China <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Vietnã -->
+      <article class="dest-card reveal group rounded-[20px] border border-line overflow-hidden bg-white flex flex-col" style="transition-delay:.16s">
+        <div class="dest-media h-56 relative" style="background:#7A1029;">
+          <img src="assets/images/vietna.jpg" alt="Formações rochosas e barcos na Baía de Ha Long, Vietnã" class="destination-photo" loading="lazy">
+          <div class="destination-overlay" aria-hidden="true"></div>
+          <span class="destination-label">Baía de Ha Long · Vietnã</span>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-display font-800 text-xl">Vietnã</h3>
+          <p class="mt-3 text-inksoft text-[15px] leading-relaxed flex-1">Conheça um país marcado por história, crescimento econômico, cultura vibrante e paisagens impressionantes.</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Natureza</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">História</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Cultura</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Gastronomia</span>
+            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Turismo</span>
+          </div>
+          <a href="#planejar" data-destino="Vietnã" class="dest-cta mt-6 inline-flex items-center gap-2 font-display font-semibold text-red">
+            Conhecer Vietnã <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOS DE EXPERIENCIA -->
+<section id="experiencias" class="py-24 md:py-28 bg-mist">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Experiências</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Mais do que uma viagem</h2>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line">
+        <div class="w-11 h-11 rounded-full bg-red-mist flex items-center justify-center text-red"><svg class="w-5 h-5"><use href="#ic-compass"/></svg></div>
+        <h3 class="font-display font-700 text-lg mt-5">Turismo Cultural</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Viagens tradicionais focadas nos principais pontos turísticos, gastronomia, história e experiências culturais.</p>
+      </div>
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line" style="transition-delay:.06s">
+        <div class="w-11 h-11 rounded-full bg-gold-mist flex items-center justify-center text-gold"><svg class="w-5 h-5"><use href="#ic-cap"/></svg></div>
+        <h3 class="font-display font-700 text-lg mt-5">Viagens Educacionais</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Programas organizados para escolas, universidades, professores e grupos acadêmicos.</p>
+      </div>
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line" style="transition-delay:.12s">
+        <div class="w-11 h-11 rounded-full bg-red-mist flex items-center justify-center text-red"><svg class="w-5 h-5"><use href="#ic-flask"/></svg></div>
+        <h3 class="font-display font-700 text-lg mt-5">Pesquisa e Estudos</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Roteiros personalizados para pesquisadores interessados em história, economia, sociedade, arquitetura, urbanismo ou desenvolvimento.</p>
+      </div>
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line" style="transition-delay:.18s">
+        <div class="w-11 h-11 rounded-full bg-gold-mist flex items-center justify-center text-gold"><svg class="w-5 h-5"><use href="#ic-building"/></svg></div>
+        <h3 class="font-display font-700 text-lg mt-5">Missões Institucionais</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Experiências para organizações, universidades, empresas e grupos interessados em visitas técnicas ou intercâmbio institucional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO EDUCACIONAL -->
+<section id="educacional" class="py-24 md:py-28 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal order-2 lg:order-1">
+      <div class="rounded-[20px] p-8 md:p-10" style="background:linear-gradient(160deg,#7A1029,#B8203C);">
+        <ul class="grid grid-cols-2 gap-4 text-white">
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Visitas a universidades</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Museus e centros históricos</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Instituições culturais</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Visitas técnicas</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Arquitetura e urbanismo</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>História política e social</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Desenvolvimento econômico</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Tecnologia e inovação</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Cultura e cotidiano</li>
+          <li class="flex items-center gap-2 text-sm font-medium"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Gastronomia local</li>
+        </ul>
+      </div>
+    </div>
+    <div class="reveal order-1 lg:order-2">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Educação</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Viajar também é aprender</h2>
+      <p class="mt-6 text-inksoft leading-relaxed text-[15.5px]">A Companhia Vermelha desenvolve roteiros educacionais que permitem compreender diferentes sociedades diretamente através de sua história, cultura, economia, arquitetura e cotidiano.</p>
+      <a href="#planejar" data-tipo="Educacional" class="mt-8 inline-flex btn-primary items-center gap-2 rounded-full px-7 py-3.5 font-display font-semibold">
+        Solicitar roteiro educacional <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="py-24 md:py-28 bg-mist">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Passo a passo</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Sua viagem em quatro passos</h2>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-4 gap-10 relative">
+      <div class="hidden md:block absolute top-6 left-[12%] right-[12%] h-px bg-line" aria-hidden="true"></div>
+      <div class="reveal relative">
+        <span class="font-display font-800 text-2xl text-red">01</span>
+        <h3 class="font-display font-700 text-lg mt-4">Escolha o destino</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Cuba, China ou Vietnã.</p>
+      </div>
+      <div class="reveal relative" style="transition-delay:.06s">
+        <span class="font-display font-800 text-2xl text-red">02</span>
+        <h3 class="font-display font-700 text-lg mt-4">Escolha sua experiência</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Turismo, educação, pesquisa ou viagem institucional.</p>
+      </div>
+      <div class="reveal relative" style="transition-delay:.12s">
+        <span class="font-display font-800 text-2xl text-red">03</span>
+        <h3 class="font-display font-700 text-lg mt-4">Personalizamos o roteiro</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">A equipe adapta duração, atividades, hospedagem e experiências.</p>
+      </div>
+      <div class="reveal relative" style="transition-delay:.18s">
+        <span class="font-display font-800 text-2xl text-red">04</span>
+        <h3 class="font-display font-700 text-lg mt-4">Viaje com suporte</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Acompanhamento antes e durante toda a experiência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROTEIROS EM DESTAQUE -->
+<section id="roteiros" class="py-24 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl reveal">
+        <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Roteiros</p>
+        <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Roteiros em destaque</h2>
+      </div>
+      <a href="#planejar" class="reveal hidden sm:inline-flex items-center gap-2 font-display font-semibold text-red">Ver todos os roteiros <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg></a>
+    </div>
+
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal rounded-[18px] border border-line p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <span class="text-xs font-semibold text-gold-deep bg-gold-mist rounded-full px-3 py-1">Turismo Cultural</span>
+        <h3 class="font-display font-700 text-lg mt-4">Cuba Essencial</h3>
+        <p class="mt-1 text-sm text-inksoft flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#ic-calendar"/></svg>7 dias</p>
+        <p class="mt-3 text-[14px] text-inksoft leading-relaxed">Havana • Varadero • experiências culturais</p>
+      </div>
+      <div class="reveal rounded-[18px] border border-line p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" style="transition-delay:.06s">
+        <span class="text-xs font-semibold text-red bg-red-mist rounded-full px-3 py-1">Cultura e Tecnologia</span>
+        <h3 class="font-display font-700 text-lg mt-4">China: Tradição e Futuro</h3>
+        <p class="mt-1 text-sm text-inksoft flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#ic-calendar"/></svg>12 dias</p>
+        <p class="mt-3 text-[14px] text-inksoft leading-relaxed">Pequim • Xangai • Shenzhen</p>
+      </div>
+      <div class="reveal rounded-[18px] border border-line p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" style="transition-delay:.12s">
+        <span class="text-xs font-semibold text-gold-deep bg-gold-mist rounded-full px-3 py-1">História e Cultura</span>
+        <h3 class="font-display font-700 text-lg mt-4">Vietnã Histórico</h3>
+        <p class="mt-1 text-sm text-inksoft flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#ic-calendar"/></svg>10 dias</p>
+        <p class="mt-3 text-[14px] text-inksoft leading-relaxed">Hanói • Huế • Ho Chi Minh</p>
+      </div>
+      <div class="reveal rounded-[18px] border border-line p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" style="transition-delay:.18s">
+        <span class="text-xs font-semibold text-red bg-red-mist rounded-full px-3 py-1">Educacional</span>
+        <h3 class="font-display font-700 text-lg mt-4">Missão Acadêmica China</h3>
+        <p class="mt-1 text-sm text-inksoft flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#ic-calendar"/></svg>14 dias</p>
+        <p class="mt-3 text-[14px] text-inksoft leading-relaxed">Universidades • tecnologia • urbanismo • economia</p>
+      </div>
+    </div>
+    <a href="#planejar" class="reveal sm:hidden mt-8 inline-flex items-center gap-2 font-display font-semibold text-red">Ver todos os roteiros <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg></a>
+  </div>
+</section>
+
+<!-- COMPARADOR -->
+<section class="py-24 md:py-28 bg-mist">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Comparador</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Compare os destinos</h2>
+      <p class="mt-4 text-inksoft text-[15px]">Uma visão rápida do perfil de cada país para ajudar na sua escolha.</p>
+    </div>
+
+    <div class="mt-12 bg-white rounded-[20px] border border-line p-6 md:p-10 reveal">
+      <div class="flex items-center gap-6 mb-8 text-sm font-semibold font-display flex-wrap">
+        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-red inline-block"></span>Cuba</span>
+        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-gold inline-block"></span>China</span>
+        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-ink inline-block"></span>Vietnã</span>
+      </div>
+
+      <div class="space-y-6" id="comparador-rows">
+        <!-- rows injected identically in markup for no-js resilience -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NÓS -->
+<section id="sobre" class="py-24 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Sobre nós</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Uma agência feita para quem quer entender, não só visitar</h2>
+      <p class="mt-6 text-inksoft leading-relaxed text-[15.5px]">A Companhia Vermelha nasceu do encontro entre o desejo de viajar e o desejo de compreender. Acreditamos que conhecer um país é entender sua história, sua economia, sua arquitetura e o cotidiano de quem vive nele — não apenas visitar seus pontos turísticos. Por isso, planejamos cada roteiro com cuidado, organização e curadoria cultural, seja para um turista curioso, um pesquisador em campo ou uma delegação institucional.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <span class="rounded-full bg-red-mist text-red font-semibold text-sm px-4 py-2">Credibilidade</span>
+        <span class="rounded-full bg-gold-mist text-gold-deep font-semibold text-sm px-4 py-2">Organização</span>
+        <span class="rounded-full bg-red-mist text-red font-semibold text-sm px-4 py-2">Cultura</span>
+        <span class="rounded-full bg-gold-mist text-gold-deep font-semibold text-sm px-4 py-2">Conhecimento</span>
+        <span class="rounded-full bg-red-mist text-red font-semibold text-sm px-4 py-2">Aventura</span>
+      </div>
+    </div>
+    <div class="reveal grid grid-cols-2 gap-5">
+      <div class="rounded-[18px] p-7 bg-mist border border-line">
+        <svg class="w-6 h-6 text-red"><use href="#ic-compass"/></svg>
+        <p class="font-display font-800 text-2xl mt-4">3</p>
+        <p class="text-sm text-inksoft mt-1">destinos com curadoria completa</p>
+      </div>
+      <div class="rounded-[18px] p-7 bg-mist border border-line mt-8">
+        <svg class="w-6 h-6 text-gold"><use href="#ic-cap"/></svg>
+        <p class="font-display font-800 text-2xl mt-4">4</p>
+        <p class="text-sm text-inksoft mt-1">formatos de experiência</p>
+      </div>
+      <div class="rounded-[18px] p-7 bg-mist border border-line">
+        <svg class="w-6 h-6 text-red"><use href="#ic-building"/></svg>
+        <p class="font-display font-800 text-2xl mt-4">+</p>
+        <p class="text-sm text-inksoft mt-1">parcerias institucionais em construção</p>
+      </div>
+      <div class="rounded-[18px] p-7 bg-mist border border-line mt-8">
+        <svg class="w-6 h-6 text-gold"><use href="#ic-users"/></svg>
+        <p class="font-display font-800 text-2xl mt-4">100%</p>
+        <p class="text-sm text-inksoft mt-1">roteiros personalizáveis</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUCIONAL -->
+<section id="institucional" class="py-24 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="rounded-[24px] p-8 md:p-14 grid lg:grid-cols-2 gap-10 items-center reveal" style="background:linear-gradient(135deg,#1D1B1A,#3a2a2c);">
+      <div>
+        <p class="text-gold font-display font-semibold text-sm uppercase tracking-wide mb-3">Institucional</p>
+        <h2 class="font-display font-800 text-white text-3xl leading-tight tracking-tight">Parcerias e missões institucionais</h2>
+        <p class="mt-5 text-white/75 leading-relaxed text-[15px]">Organizamos experiências para universidades, empresas e organizações que buscam visitas técnicas, intercâmbio acadêmico ou missões de observação institucional, com suporte completo de planejamento e logística.</p>
+        <a href="#planejar" data-tipo="Institucional" class="mt-7 inline-flex btn-gold items-center gap-2 rounded-full px-7 py-3.5 font-display font-semibold">
+          Falar sobre um projeto institucional <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+        </a>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-4">
+        <li class="rounded-[16px] bg-white/5 border border-white/10 p-5 text-white/90 text-sm font-medium flex items-center gap-2"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Visitas técnicas</li>
+        <li class="rounded-[16px] bg-white/5 border border-white/10 p-5 text-white/90 text-sm font-medium flex items-center gap-2"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Intercâmbio institucional</li>
+        <li class="rounded-[16px] bg-white/5 border border-white/10 p-5 text-white/90 text-sm font-medium flex items-center gap-2"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Roteiros para delegações</li>
+        <li class="rounded-[16px] bg-white/5 border border-white/10 p-5 text-white/90 text-sm font-medium flex items-center gap-2"><svg class="w-4 h-4 text-gold shrink-0"><use href="#ic-check"/></svg>Suporte em documentação</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="py-24 md:py-28 bg-mist">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Para quem é</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Para quem é a Companhia Vermelha?</h2>
+    </div>
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line">
+        <svg class="w-6 h-6 text-red"><use href="#ic-compass"/></svg>
+        <h3 class="font-display font-700 text-lg mt-4">Turistas</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Para quem procura uma experiência diferente e culturalmente rica.</p>
+      </div>
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line" style="transition-delay:.06s">
+        <svg class="w-6 h-6 text-gold"><use href="#ic-cap"/></svg>
+        <h3 class="font-display font-700 text-lg mt-4">Estudantes</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Para trabalhos escolares, universitários e experiências acadêmicas.</p>
+      </div>
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line" style="transition-delay:.12s">
+        <svg class="w-6 h-6 text-red"><use href="#ic-flask"/></svg>
+        <h3 class="font-display font-700 text-lg mt-4">Pesquisadores</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Para projetos de campo e estudos especializados.</p>
+      </div>
+      <div class="reveal bg-white rounded-[18px] p-7 border border-line" style="transition-delay:.18s">
+        <svg class="w-6 h-6 text-gold"><use href="#ic-building"/></svg>
+        <h3 class="font-display font-700 text-lg mt-4">Instituições</h3>
+        <p class="mt-2 text-[14.5px] text-inksoft leading-relaxed">Para universidades, empresas, organizações e missões institucionais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CADERNO VERMELHO -->
+<section id="blog" class="py-24 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Editorial</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Caderno Vermelho</h2>
+      <p class="mt-4 text-inksoft text-[15px]">Conteúdo para conhecer antes de viajar.</p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-2.5 reveal" id="blog-filters">
+      <button class="tag-pill active rounded-full px-4 py-1.5 text-sm font-medium" data-filter="todos">Todos</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="cuba">Cuba</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="china">China</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="vietna">Vietnã</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="historia">História</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="cultura">Cultura</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="educacao">Educação</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="turismo">Turismo</button>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-grid">
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="cuba cultura turismo">
+        <div class="h-36" style="background:linear-gradient(135deg,#B8203C,#7A1029);"></div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-red uppercase tracking-wide">Cuba</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">O que conhecer em Havana além dos pontos turísticos tradicionais</h3>
+          <p class="mt-2 text-[13.5px] text-inksoft leading-relaxed">Bairros, ateliês e rotinas locais que revelam uma Havana pouco vista pelos roteiros comuns.</p>
+        </div>
+      </article>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="china turismo cultura">
+        <div class="h-36" style="background:linear-gradient(135deg,#B4933A,#83691F);"></div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-gold-deep uppercase tracking-wide">China</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">Pequim ou Xangai: qual cidade visitar primeiro?</h3>
+          <p class="mt-2 text-[13.5px] text-inksoft leading-relaxed">Um comparativo direto entre a capital histórica e a metrópole futurista.</p>
+        </div>
+      </article>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="vietna cultura turismo">
+        <div class="h-36" style="background:linear-gradient(135deg,#1D1B1A,#5B5652);"></div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-ink uppercase tracking-wide">Vietnã</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">10 experiências culturais para conhecer no Vietnã</h3>
+          <p class="mt-2 text-[13.5px] text-inksoft leading-relaxed">De mercados flutuantes a cerimônias tradicionais, um guia prático de vivências.</p>
+        </div>
+      </article>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="educacao" style="transition-delay:.06s">
+        <div class="h-36" style="background:linear-gradient(135deg,#7A1029,#B4933A);"></div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-red uppercase tracking-wide">Educação</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">Como funciona uma viagem acadêmica internacional</h3>
+          <p class="mt-2 text-[13.5px] text-inksoft leading-relaxed">Etapas de planejamento, documentação e estrutura de um roteiro acadêmico.</p>
+        </div>
+      </article>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="china cultura historia" style="transition-delay:.12s">
+        <div class="h-36" style="background:linear-gradient(135deg,#B8203C,#B4933A);"></div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-gold-deep uppercase tracking-wide">China</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">China: tradição e tecnologia na mesma viagem</h3>
+          <p class="mt-2 text-[13.5px] text-inksoft leading-relaxed">Como um mesmo roteiro pode passar por templos milenares e polos de inovação.</p>
+        </div>
+      </article>
+    </div>
+    <p id="blog-empty" class="hidden mt-10 text-inksoft text-sm">Nenhum artigo encontrado para esse filtro.</p>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section id="mapa" class="py-24 md:py-28 bg-mist">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Mapa</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Onde estamos indo?</h2>
+    </div>
+
+    <div class="mt-12 grid lg:grid-cols-5 gap-8 items-start">
+      <div class="lg:col-span-3 reveal bg-white rounded-[20px] border border-line p-4 md:p-8">
+        <svg viewBox="0 0 1000 460" class="w-full h-auto" role="img" aria-label="Mapa estilizado destacando Cuba, China e Vietnã">
+          <defs>
+            <pattern id="dotgrid" width="24" height="24" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1.4" fill="#E8E4DE"/>
+            </pattern>
+          </defs>
+          <rect x="0" y="0" width="1000" height="460" fill="url(#dotgrid)"/>
+          <path d="M120 120 C 220 60, 340 90, 380 170 C 420 250, 340 300, 260 280 C 180 260, 80 220, 120 120 Z" fill="#F6EFDA" opacity=".7"/>
+          <path d="M600 80 C 740 40, 880 100, 860 200 C 840 300, 700 320, 640 260 C 580 200, 560 130, 600 80 Z" fill="#FBEAEE" opacity=".7"/>
+          <path d="M680 260 C 740 250, 780 320, 750 380 C 720 420, 660 400, 650 350 C 640 300, 630 270, 680 260 Z" fill="#F6EFDA" opacity=".7"/>
+
+          <g>
+            <line x1="230" y1="190" x2="620" y2="150" class="route-dash" stroke="#B4933A" stroke-width="1.5" fill="none"/>
+            <line x1="620" y1="150" x2="700" y2="300" class="route-dash" stroke="#B4933A" stroke-width="1.5" fill="none" style="animation-delay:.5s"/>
+          </g>
+
+          <button class="marker-btn" data-country="cuba" tabindex="-1" aria-hidden="true" style="all:unset">
+            <circle class="marker-dot" cx="230" cy="190" r="9" fill="#B8203C"/>
+          </button>
+        </svg>
+        <div class="flex justify-center gap-4 mt-2" role="group" aria-label="Selecionar destino no mapa">
+          <button class="marker-btn flex items-center gap-2 rounded-full px-4 py-2 border border-line text-sm font-semibold font-display" data-country="cuba" data-active="true">
+            <span class="marker-dot w-2.5 h-2.5 rounded-full bg-red inline-block"></span>Cuba
+          </button>
+          <button class="marker-btn flex items-center gap-2 rounded-full px-4 py-2 border border-line text-sm font-semibold font-display" data-country="china">
+            <span class="marker-dot w-2.5 h-2.5 rounded-full bg-gold inline-block"></span>China
+          </button>
+          <button class="marker-btn flex items-center gap-2 rounded-full px-4 py-2 border border-line text-sm font-semibold font-display" data-country="vietna">
+            <span class="marker-dot w-2.5 h-2.5 rounded-full bg-ink inline-block"></span>Vietnã
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 reveal bg-white rounded-[20px] border border-line p-8" id="map-panel">
+        <h3 class="font-display font-800 text-2xl" id="map-name">Cuba</h3>
+        <dl class="mt-5 space-y-3 text-[14.5px]">
+          <div class="flex justify-between gap-4"><dt class="text-inksoft">Capital</dt><dd class="font-medium" id="map-capital">Havana</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-inksoft">Principais destinos</dt><dd class="font-medium text-right" id="map-destinos">Havana, Varadero, Trinidad</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-inksoft">Duração média</dt><dd class="font-medium" id="map-duracao">7–10 dias</dd></div>
+        </dl>
+        <a href="#planejar" id="map-explorar" data-destino="Cuba" class="mt-7 inline-flex btn-primary items-center gap-2 rounded-full px-6 py-3 font-display font-semibold text-sm">
+          Explorar <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="py-24 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl reveal mx-auto text-center">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Depoimentos</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Quem viajou, conta</h2>
+    </div>
+
+    <div class="mt-14 max-w-2xl mx-auto reveal">
+      <div class="overflow-hidden rounded-[20px] border border-line">
+        <div class="carousel-track" id="testi-track">
+          <div class="carousel-slide p-10 text-center bg-white">
+            <div class="flex justify-center gap-1 text-gold mb-4">
+              <svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg>
+            </div>
+            <p class="font-display text-lg leading-relaxed text-ink">"A viagem conseguiu unir turismo e conteúdo acadêmico de uma forma que dificilmente encontraríamos em um pacote tradicional."</p>
+            <p class="mt-5 font-semibold text-sm">Mariana Duarte</p>
+            <p class="text-xs text-inksoft">Professora universitária • viagem à China</p>
+          </div>
+          <div class="carousel-slide p-10 text-center bg-white">
+            <div class="flex justify-center gap-1 text-gold mb-4">
+              <svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg>
+            </div>
+            <p class="font-display text-lg leading-relaxed text-ink">"Chegamos como turistas e voltamos entendendo a história cubana de um jeito que nenhum guia tradicional teria mostrado."</p>
+            <p class="mt-5 font-semibold text-sm">Felipe Andrade</p>
+            <p class="text-xs text-inksoft">Turista • viagem a Cuba</p>
+          </div>
+          <div class="carousel-slide p-10 text-center bg-white">
+            <div class="flex justify-center gap-1 text-gold mb-4">
+              <svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg><svg class="w-4 h-4"><use href="#ic-star"/></svg>
+            </div>
+            <p class="font-display text-lg leading-relaxed text-ink">"Como pesquisadora, encontrei apoio real para montar um roteiro que fazia sentido para o meu projeto de campo."</p>
+            <p class="mt-5 font-semibold text-sm">Camila Reis</p>
+            <p class="text-xs text-inksoft">Pesquisadora • viagem ao Vietnã</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-center gap-6 mt-6">
+        <button id="testi-prev" class="w-10 h-10 rounded-full border border-line flex items-center justify-center" aria-label="Depoimento anterior"><svg class="w-4 h-4"><use href="#ic-chevron-left"/></svg></button>
+        <div class="flex gap-2" id="testi-dots" role="tablist" aria-label="Selecionar depoimento"></div>
+        <button id="testi-next" class="w-10 h-10 rounded-full border border-line flex items-center justify-center" aria-label="Próximo depoimento"><svg class="w-4 h-4"><use href="#ic-chevron-right"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-24 md:py-28 bg-mist">
+  <div class="max-w-4xl mx-auto px-5 md:px-8">
+    <div class="reveal text-center">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Dúvidas</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Perguntas frequentes</h2>
+    </div>
+
+    <div class="mt-12 space-y-4" id="faq-list">
+      <div class="acc-item reveal bg-white rounded-[16px] border border-line" data-open="false">
+        <button class="acc-trigger w-full flex items-center justify-between gap-4 p-6 text-left" aria-expanded="false">
+          <span class="font-display font-700">A Companhia Vermelha atende turistas comuns?</span>
+          <svg class="acc-chevron w-5 h-5 text-red shrink-0"><use href="#ic-chevron-down"/></svg>
+        </button>
+        <div class="acc-panel px-6"><p class="pb-6 text-inksoft text-[15px] leading-relaxed">Sim. Existem tanto roteiros tradicionais quanto viagens acadêmicas e institucionais.</p></div>
+      </div>
+      <div class="acc-item reveal bg-white rounded-[16px] border border-line" data-open="false">
+        <button class="acc-trigger w-full flex items-center justify-between gap-4 p-6 text-left" aria-expanded="false">
+          <span class="font-display font-700">É possível montar um roteiro personalizado?</span>
+          <svg class="acc-chevron w-5 h-5 text-red shrink-0"><use href="#ic-chevron-down"/></svg>
+        </button>
+        <div class="acc-panel px-6"><p class="pb-6 text-inksoft text-[15px] leading-relaxed">Sim. Cada roteiro pode ser adaptado em duração, destinos, atividades e nível de personalização.</p></div>
+      </div>
+      <div class="acc-item reveal bg-white rounded-[16px] border border-line" data-open="false">
+        <button class="acc-trigger w-full flex items-center justify-between gap-4 p-6 text-left" aria-expanded="false">
+          <span class="font-display font-700">Vocês organizam viagens para universidades e escolas?</span>
+          <svg class="acc-chevron w-5 h-5 text-red shrink-0"><use href="#ic-chevron-down"/></svg>
+        </button>
+        <div class="acc-panel px-6"><p class="pb-6 text-inksoft text-[15px] leading-relaxed">Sim, com programas educacionais estruturados para grupos escolares, universitários e corpo docente.</p></div>
+      </div>
+      <div class="acc-item reveal bg-white rounded-[16px] border border-line" data-open="false">
+        <button class="acc-trigger w-full flex items-center justify-between gap-4 p-6 text-left" aria-expanded="false">
+          <span class="font-display font-700">É possível organizar visitas técnicas?</span>
+          <svg class="acc-chevron w-5 h-5 text-red shrink-0"><use href="#ic-chevron-down"/></svg>
+        </button>
+        <div class="acc-panel px-6"><p class="pb-6 text-inksoft text-[15px] leading-relaxed">Sim, dependendo da disponibilidade das instituições locais.</p></div>
+      </div>
+      <div class="acc-item reveal bg-white rounded-[16px] border border-line" data-open="false">
+        <button class="acc-trigger w-full flex items-center justify-between gap-4 p-6 text-left" aria-expanded="false">
+          <span class="font-display font-700">Vocês auxiliam com documentação e visto?</span>
+          <svg class="acc-chevron w-5 h-5 text-red shrink-0"><use href="#ic-chevron-down"/></svg>
+        </button>
+        <div class="acc-panel px-6"><p class="pb-6 text-inksoft text-[15px] leading-relaxed">Sim. Nossa equipe orienta os viajantes conforme as exigências vigentes de cada destino.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANEJAR VIAGEM -->
+<section id="planejar" class="py-24 md:py-28 bg-white">
+  <div class="max-w-4xl mx-auto px-5 md:px-8">
+    <div class="reveal text-center">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Planejamento</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Planeje sua viagem</h2>
+      <p class="mt-4 text-inksoft text-[15px]">Conte os detalhes e a equipe retorna com uma proposta de roteiro.</p>
+    </div>
+
+    <form id="trip-form" novalidate class="reveal mt-12 bg-mist rounded-[20px] border border-line p-6 md:p-10 grid sm:grid-cols-2 gap-5" aria-label="Formulário de planejamento de viagem">
+      <div class="flex flex-col gap-1.5">
+        <label for="t-nome" class="text-sm font-semibold">Nome</label>
+        <input id="t-nome" name="nome" type="text" required class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Seu nome completo">
+        <span class="err text-xs text-red hidden">Informe seu nome.</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="t-email" class="text-sm font-semibold">E-mail</label>
+        <input id="t-email" name="email" type="email" required class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="voce@email.com">
+        <span class="err text-xs text-red hidden">Informe um e-mail válido.</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="t-telefone" class="text-sm font-semibold">Telefone</label>
+        <input id="t-telefone" name="telefone" type="tel" required class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="(00) 00000-0000">
+        <span class="err text-xs text-red hidden">Informe um telefone.</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="t-destino" class="text-sm font-semibold">Destino</label>
+        <select id="t-destino" name="destino" required class="rounded-[10px] border border-line px-4 py-3 text-sm">
+          <option value="">Selecione</option>
+          <option>Cuba</option><option>China</option><option>Vietnã</option><option>Ainda não decidi</option>
+        </select>
+        <span class="err text-xs text-red hidden">Selecione um destino.</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="t-viajantes" class="text-sm font-semibold">Número de viajantes</label>
+        <input id="t-viajantes" name="viajantes" type="number" min="1" required class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Ex: 2">
+        <span class="err text-xs text-red hidden">Informe o número de viajantes.</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="t-tipo" class="text-sm font-semibold">Tipo de viagem</label>
+        <select id="t-tipo" name="tipo" required class="rounded-[10px] border border-line px-4 py-3 text-sm">
+          <option value="">Selecione</option>
+          <option>Turismo</option><option>Educacional</option><option>Pesquisa</option><option>Institucional</option><option>Personalizado</option>
+        </select>
+        <span class="err text-xs text-red hidden">Selecione o tipo de viagem.</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="t-periodo" class="text-sm font-semibold">Período desejado</label>
+        <input id="t-periodo" name="periodo" type="text" class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Ex: julho de 2027">
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="t-duracao" class="text-sm font-semibold">Duração aproximada</label>
+        <input id="t-duracao" name="duracao" type="text" class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Ex: 10 dias">
+      </div>
+      <div class="sm:col-span-2 flex flex-col gap-1.5">
+        <label for="t-objetivo" class="text-sm font-semibold">Objetivo da viagem</label>
+        <textarea id="t-objetivo" name="objetivo" rows="3" class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Conte brevemente o que busca nessa viagem"></textarea>
+      </div>
+      <div class="sm:col-span-2 flex flex-col gap-1.5">
+        <label for="t-obs" class="text-sm font-semibold">Observações</label>
+        <textarea id="t-obs" name="obs" rows="3" class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Alguma informação adicional?"></textarea>
+      </div>
+
+      <div class="sm:col-span-2 flex items-center gap-4 mt-2 flex-wrap">
+        <button type="submit" class="btn-primary rounded-full px-8 py-3.5 font-display font-semibold inline-flex items-center gap-2">
+          Enviar solicitação <svg class="w-4 h-4"><use href="#ic-send"/></svg>
+        </button>
+        <span id="trip-success" class="form-msg items-center gap-2 text-sm font-medium text-green-700"><svg class="w-4 h-4"><use href="#ic-check"/></svg>Recebemos sua solicitação! Entraremos em contato em breve.</span>
+        <span id="trip-error" class="form-msg items-center gap-2 text-sm font-medium text-red"><svg class="w-4 h-4"><use href="#ic-close"/></svg>Verifique os campos destacados e tente novamente.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-24 md:py-28">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="reveal rounded-[28px] p-10 md:p-16 text-center" style="background:linear-gradient(135deg,#7A1029,#B8203C 70%);">
+      <h2 class="font-display font-800 text-white text-3xl md:text-5xl leading-tight tracking-tight max-w-3xl mx-auto">Sua próxima viagem pode mudar sua perspectiva.</h2>
+      <p class="mt-6 text-white/85 max-w-xl mx-auto text-[15.5px]">Conte qual destino ou experiência você procura e criaremos um roteiro personalizado para você, seu grupo ou sua instituição.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-4">
+        <a href="#planejar" class="rounded-full px-7 py-3.5 font-display font-semibold bg-white text-red inline-flex items-center gap-2 hover:bg-gold-mist transition-colors">
+          Planejar minha viagem <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
+        </a>
+        <a href="#contato" class="rounded-full px-7 py-3.5 font-display font-semibold border border-white/40 text-white hover:bg-white/10 transition-colors">
+          Falar com um especialista
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="py-24 md:py-28 bg-mist">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 grid lg:grid-cols-5 gap-12">
+    <div class="lg:col-span-2 reveal">
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Contato</p>
+      <h2 class="font-display font-800 text-3xl leading-tight tracking-tight">Fale com um especialista</h2>
+      <p class="mt-5 text-inksoft text-[15px] leading-relaxed">Tire dúvidas sobre destinos, roteiros ou parcerias institucionais diretamente com nossa equipe.</p>
+      <div class="mt-8 space-y-4">
+        <a href="mailto:contato@companhiavermelha.com.br" class="flex items-center gap-3 text-sm font-medium hover:text-red transition-colors">
+          <span class="w-10 h-10 rounded-full bg-white border border-line flex items-center justify-center"><svg class="w-4 h-4"><use href="#ic-mail"/></svg></span>
+          contato@companhiavermelha.com.br
+        </a>
+        <a href="tel:+556100000000" class="flex items-center gap-3 text-sm font-medium hover:text-red transition-colors">
+          <span class="w-10 h-10 rounded-full bg-white border border-line flex items-center justify-center"><svg class="w-4 h-4"><use href="#ic-phone"/></svg></span>
+          (61) 0000-0000
+        </a>
+      </div>
+      <div class="mt-7 flex gap-3">
+        <a href="#" aria-label="Instagram da Companhia Vermelha" class="w-10 h-10 rounded-full bg-white border border-line flex items-center justify-center hover:border-red hover:text-red transition-colors"><svg class="w-4 h-4"><use href="#ic-instagram"/></svg></a>
+        <a href="#" aria-label="Facebook da Companhia Vermelha" class="w-10 h-10 rounded-full bg-white border border-line flex items-center justify-center hover:border-red hover:text-red transition-colors"><svg class="w-4 h-4"><use href="#ic-facebook"/></svg></a>
+        <a href="#" aria-label="WhatsApp da Companhia Vermelha" class="w-10 h-10 rounded-full bg-white border border-line flex items-center justify-center hover:border-red hover:text-red transition-colors"><svg class="w-4 h-4"><use href="#ic-message"/></svg></a>
+      </div>
+    </div>
+
+    <form id="contact-form" novalidate class="lg:col-span-3 reveal bg-white rounded-[20px] border border-line p-6 md:p-8 grid sm:grid-cols-2 gap-5" aria-label="Formulário de contato">
+      <div class="flex flex-col gap-1.5">
+        <label for="c-nome" class="text-sm font-semibold">Nome</label>
+        <input id="c-nome" name="nome" type="text" required class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Seu nome">
+        <span class="err text-xs text-red hidden">Informe seu nome.</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="c-email" class="text-sm font-semibold">E-mail</label>
+        <input id="c-email" name="email" type="email" required class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="voce@email.com">
+        <span class="err text-xs text-red hidden">Informe um e-mail válido.</span>
+      </div>
+      <div class="sm:col-span-2 flex flex-col gap-1.5">
+        <label for="c-msg" class="text-sm font-semibold">Mensagem</label>
+        <textarea id="c-msg" name="mensagem" rows="4" required class="rounded-[10px] border border-line px-4 py-3 text-sm" placeholder="Como podemos ajudar?"></textarea>
+        <span class="err text-xs text-red hidden">Escreva sua mensagem.</span>
+      </div>
+      <div class="sm:col-span-2 flex items-center gap-4 flex-wrap">
+        <button type="submit" class="btn-primary rounded-full px-7 py-3 font-display font-semibold text-sm inline-flex items-center gap-2">
+          Enviar mensagem <svg class="w-4 h-4"><use href="#ic-send"/></svg>
+        </button>
+        <span id="contact-success" class="form-msg items-center gap-2 text-sm font-medium text-green-700"><svg class="w-4 h-4"><use href="#ic-check"/></svg>Mensagem enviada! Responderemos em breve.</span>
+        <span id="contact-error" class="form-msg items-center gap-2 text-sm font-medium text-red"><svg class="w-4 h-4"><use href="#ic-close"/></svg>Verifique os campos destacados.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-ink text-white/70 pt-20 pb-10">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+    <div class="lg:col-span-2">
+      <a href="#inicio" class="footer-brand" aria-label="Companhia Vermelha — início">
+        <img src="assets/images/logo-companhia-vermelha.png" alt="Companhia Vermelha" class="footer-logo">
+      </a>
+      <p class="mt-4 text-sm leading-relaxed max-w-xs">Turismo, cultura e conhecimento através de novas perspectivas.</p>
+      <form id="newsletter-form" novalidate class="mt-6 flex gap-2 max-w-xs">
+        <label for="newsletter-email" class="sr-only">Seu e-mail</label>
+        <input id="newsletter-email" type="email" required placeholder="Seu e-mail" class="flex-1 min-w-0 rounded-[10px] bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-white/40">
+        <button type="submit" class="shrink-0 rounded-[10px] bg-red px-4 py-2.5 text-sm font-semibold font-display">OK</button>
+      </form>
+      <p id="newsletter-msg" class="form-msg mt-2 text-xs text-gold items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#ic-check"/></svg>Inscrição confirmada.</p>
+    </div>
+
+    <div>
+      <h4 class="font-display font-700 text-white text-sm uppercase tracking-wide">Companhia</h4>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        <li><a href="#sobre" class="hover:text-white transition-colors">Sobre nós</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Como funciona</a></li>
+        <li><a href="#contato" class="hover:text-white transition-colors">Contato</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-display font-700 text-white text-sm uppercase tracking-wide">Destinos</h4>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        <li><a href="#destinos" class="hover:text-white transition-colors">Cuba</a></li>
+        <li><a href="#destinos" class="hover:text-white transition-colors">China</a></li>
+        <li><a href="#destinos" class="hover:text-white transition-colors">Vietnã</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-display font-700 text-white text-sm uppercase tracking-wide">Experiências</h4>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        <li><a href="#experiencias" class="hover:text-white transition-colors">Turismo</a></li>
+        <li><a href="#educacional" class="hover:text-white transition-colors">Educação</a></li>
+        <li><a href="#experiencias" class="hover:text-white transition-colors">Pesquisa</a></li>
+        <li><a href="#institucional" class="hover:text-white transition-colors">Institucional</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 mt-14 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-white/45">
+    <p>© <span id="year"></span> Companhia Vermelha. Todos os direitos reservados.</p>
+    <div class="flex gap-5">
+      <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+      <a href="#" class="hover:text-white transition-colors">Documentação</a>
+      <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+      <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CONTACT -->
+<a href="#contato" class="float-btn fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-red text-white flex items-center justify-center hover:bg-red-deep transition-colors" aria-label="Ir para contato">
+  <svg class="w-6 h-6"><use href="#ic-message"/></svg>
+</a>
+
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
