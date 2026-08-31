@@ -191,71 +191,53 @@
       <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Explore nossos destinos</h2>
     </div>
 
-    <div class="mt-14 grid md:grid-cols-3 gap-8">
+    <div class="mt-14 country-banners">
       <!-- Cuba -->
-      <article class="dest-card reveal group rounded-[20px] border border-line overflow-hidden bg-white flex flex-col">
-        <div class="dest-media h-56 relative" style="background:#7A1029;">
-          <img src="assets/images/cuba.jpg" alt="Carros clássicos diante de fachadas coloridas em Havana, Cuba" class="destination-photo" loading="lazy">
-          <div class="destination-overlay" aria-hidden="true"></div>
-          <span class="destination-label">Havana · Cuba</span>
-        </div>
-        <div class="p-7 flex flex-col flex-1">
-          <h3 class="font-display font-800 text-xl">Cuba</h3>
-          <p class="mt-3 text-inksoft text-[15px] leading-relaxed flex-1">História, arquitetura, música, cultura caribenha e uma sociedade única para conhecer de perto.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Cultura</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">História</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Arquitetura</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Pesquisa</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Turismo</span>
+      <article class="dest-card country-banner reveal group">
+        <img src="assets/images/cuba.jpg" alt="Carros clássicos diante de fachadas coloridas em Havana, Cuba" class="destination-photo" loading="lazy">
+        <div class="country-banner-overlay" aria-hidden="true"></div>
+        <div class="country-banner-content">
+          <span class="country-banner-label">Havana · Cuba</span>
+          <h3 class="font-display font-800 text-3xl md:text-4xl">Cuba</h3>
+          <p>História, arquitetura, música, cultura caribenha e uma sociedade única para conhecer de perto.</p>
+          <div class="country-banner-tags" aria-label="Destaques de Cuba">
+            <span>Cultura</span><span>História</span><span>Arquitetura</span><span>Pesquisa</span><span>Turismo</span>
           </div>
-          <a href="#planejar" data-destino="Cuba" class="dest-cta mt-6 inline-flex items-center gap-2 font-display font-semibold text-red">
+          <a href="#planejar" data-destino="Cuba" class="dest-cta">
             Conhecer Cuba <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
           </a>
         </div>
       </article>
 
       <!-- China -->
-      <article class="dest-card reveal group rounded-[20px] border border-line overflow-hidden bg-white flex flex-col" style="transition-delay:.08s">
-        <div class="dest-media h-56 relative" style="background:#7A1029;">
-          <img src="assets/images/china.jpg" alt="Grande Muralha atravessando as montanhas da China" class="destination-photo" loading="lazy">
-          <div class="destination-overlay" aria-hidden="true"></div>
-          <span class="destination-label">Grande Muralha · China</span>
-        </div>
-        <div class="p-7 flex flex-col flex-1">
-          <h3 class="font-display font-800 text-xl">China</h3>
-          <p class="mt-3 text-inksoft text-[15px] leading-relaxed flex-1">Uma jornada entre tradições milenares, megacidades, inovação tecnológica e transformações sociais.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">História</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Tecnologia</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Cultura</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Economia</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Turismo</span>
+      <article class="dest-card country-banner reveal group" style="transition-delay:.08s">
+        <img src="assets/images/china.jpg" alt="Grande Muralha atravessando as montanhas da China" class="destination-photo" loading="lazy">
+        <div class="country-banner-overlay" aria-hidden="true"></div>
+        <div class="country-banner-content">
+          <span class="country-banner-label">Grande Muralha · China</span>
+          <h3 class="font-display font-800 text-3xl md:text-4xl">China</h3>
+          <p>Uma jornada entre tradições milenares, megacidades, inovação tecnológica e transformações sociais.</p>
+          <div class="country-banner-tags" aria-label="Destaques da China">
+            <span>História</span><span>Tecnologia</span><span>Cultura</span><span>Economia</span><span>Turismo</span>
           </div>
-          <a href="#planejar" data-destino="China" class="dest-cta mt-6 inline-flex items-center gap-2 font-display font-semibold text-red">
+          <a href="#planejar" data-destino="China" class="dest-cta">
             Conhecer China <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
           </a>
         </div>
       </article>
 
       <!-- Vietnã -->
-      <article class="dest-card reveal group rounded-[20px] border border-line overflow-hidden bg-white flex flex-col" style="transition-delay:.16s">
-        <div class="dest-media h-56 relative" style="background:#7A1029;">
-          <img src="assets/images/vietna.jpg" alt="Formações rochosas e barcos na Baía de Ha Long, Vietnã" class="destination-photo" loading="lazy">
-          <div class="destination-overlay" aria-hidden="true"></div>
-          <span class="destination-label">Baía de Ha Long · Vietnã</span>
-        </div>
-        <div class="p-7 flex flex-col flex-1">
-          <h3 class="font-display font-800 text-xl">Vietnã</h3>
-          <p class="mt-3 text-inksoft text-[15px] leading-relaxed flex-1">Conheça um país marcado por história, crescimento econômico, cultura vibrante e paisagens impressionantes.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Natureza</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">História</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Cultura</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Gastronomia</span>
-            <span class="tag-pill rounded-full px-3 py-1 text-xs font-medium text-inksoft">Turismo</span>
+      <article class="dest-card country-banner reveal group" style="transition-delay:.16s">
+        <img src="assets/images/vietna.jpg" alt="Formações rochosas e barcos na Baía de Ha Long, Vietnã" class="destination-photo" loading="lazy">
+        <div class="country-banner-overlay" aria-hidden="true"></div>
+        <div class="country-banner-content">
+          <span class="country-banner-label">Baía de Ha Long · Vietnã</span>
+          <h3 class="font-display font-800 text-3xl md:text-4xl">Vietnã</h3>
+          <p>Conheça um país marcado por história, crescimento econômico, cultura vibrante e paisagens impressionantes.</p>
+          <div class="country-banner-tags" aria-label="Destaques do Vietnã">
+            <span>Natureza</span><span>História</span><span>Cultura</span><span>Gastronomia</span><span>Turismo</span>
           </div>
-          <a href="#planejar" data-destino="Vietnã" class="dest-cta mt-6 inline-flex items-center gap-2 font-display font-semibold text-red">
+          <a href="#planejar" data-destino="Vietnã" class="dest-cta">
             Conhecer Vietnã <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
           </a>
         </div>
