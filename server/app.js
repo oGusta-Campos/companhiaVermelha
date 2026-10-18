@@ -9,6 +9,7 @@ const PUBLIC_PAGES = [
 ];
 const CARD_TYPES = new Set(['destination', 'article']);
 const AUTH_SCRIPT = '<script src="/js/auth.js" defer></script>';
+const PUBLIC_CARD_SCRIPT = '<script src="/js/public-cards.js" defer></script>';
 
 function sendPublicPage(publicDir, page) {
   return (req, res) => {
@@ -16,6 +17,9 @@ function sendPublicPage(publicDir, page) {
       if (error) return res.status(error.code === 'ENOENT' ? 404 : 500).send('Página não encontrada.');
       const scripts = [];
       if (!markup.includes('/js/auth.js') && !markup.includes('js/auth.js')) scripts.push(AUTH_SCRIPT);
+      if ((page === 'destinos.html' || page === 'caderno.html') && !markup.includes('/js/public-cards.js')) {
+        scripts.push(PUBLIC_CARD_SCRIPT);
+      }
       if (scripts.length) {
         const injected = scripts.join('\n');
         markup = /<\/body\s*>/i.test(markup)

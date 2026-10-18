@@ -163,6 +163,11 @@ test('disponibiliza formulário de login e painel administrativo com papéis e C
     assert.equal(response.status, 200, `${page} deve continuar público`);
     const html = await response.text();
     assert.match(html, /src="\/js\/auth\.js"/, `${page} deve oferecer acesso à conta`);
+    if (page === 'destinos.html' || page === 'caderno.html') {
+      assert.match(html, /src="\/js\/public-cards\.js"/, `${page} deve carregar cards do banco`);
+    } else {
+      assert.doesNotMatch(html, /src="\/js\/public-cards\.js"/, `${page} não deve carregar o renderizador de cards`);
+    }
   }
 
   const adminLogin = await login(baseUrl, 'admin', initialAdminPassword);
