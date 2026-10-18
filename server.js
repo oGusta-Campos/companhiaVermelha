@@ -31,7 +31,7 @@ const server = app.listen(PORT, '127.0.0.1', () => {
 
 server.on('error', (error) => {
   if (error.code === 'EADDRINUSE') {
-    console.error(`A porta ${PORT} já está em uso. Tente PORT=3001 npm start ou encerre o outro servidor.`);
+    console.error(`A porta ${PORT} já está em uso. No PowerShell, tente $env:PORT=3001; npm start.`);
   } else {
     console.error(`Não foi possível iniciar o servidor: ${error.message}`);
   }
