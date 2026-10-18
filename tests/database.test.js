@@ -137,3 +137,32 @@ test('persiste usuários e lista apenas informações seguras', async (t) => {
   ]);
   assert.equal(Object.hasOwn(db.listUsers()[1], 'passwordHash'), false);
 });
+
+test('não restaura o seed depois que todos os cards são apagados', async (t) => {
+  const opened = await openDatabase(t);
+  const { db } = opened;
+  const cards = [...db.listCards('destination'), ...db.listCards('article')];
+  cards.forEach((card) => assert.equal(db.deleteCard(card.id), true));
+  assert.equal(db.listCards('destination').length + db.listCards('article').length, 0);
+  db.close();
+
+  const reopened = databaseModule.initializeDatabase(opened.dbPath, opened.seedPath);
+  opened.replaceCleanupDatabase(reopened.db);
+  assert.equal(reopened.db.listCards('destination').length + reopened.db.listCards('article').length, 0);
+  assert.equal(reopened.initialAdminPassword, null);
+});
+
+test('persiste cards e usuários criados pelo administrador após reabrir', async (t) => {
+  const opened = await openDatabase(t);
+  const card = opened.db.createCard({
+    type: 'article', title: 'Card persistente', category: 'Cuba', summary: 'Resumo',
+    details: 'Detalhes', tags: ['cultura'], image: null, sortOrder: 50
+  });
+  opened.db.createUser({ username: 'persistente', password: 'senha-forte-123', role: 'user' });
+  opened.db.close();
+
+  const reopened = databaseModule.initializeDatabase(opened.dbPath, opened.seedPath);
+  opened.replaceCleanupDatabase(reopened.db);
+  assert.ok(reopened.db.listCards('article').some((saved) => saved.id === card.id && saved.title === card.title));
+  assert.equal(reopened.db.getUserByUsername('persistente').role, 'user');
+});

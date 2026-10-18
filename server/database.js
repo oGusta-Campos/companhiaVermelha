@@ -119,28 +119,38 @@ function initializeDatabase(dbPath, seedPath) {
       created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
       updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
+    CREATE TABLE IF NOT EXISTS app_meta (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
   `);
 
-  const existingCards = connection.prepare('SELECT COUNT(*) AS total FROM cards').get().total;
-  if (existingCards === 0) {
-    const seedCards = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
-    if (!Array.isArray(seedCards)) throw new TypeError('O arquivo de seed precisa conter uma lista de cards.');
-    const insert = connection.prepare(`
-      INSERT INTO cards (type, title, category, summary, details, tags_json, image, sort_order)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-    connection.exec('BEGIN');
-    try {
-      seedCards.forEach((card, index) => {
-        const valid = validateCard({ ...card, sortOrder: card.sortOrder ?? index });
-        insert.run(valid.type, valid.title, valid.category, valid.summary, valid.details,
-          JSON.stringify(valid.tags), valid.image, valid.sortOrder);
-      });
-      connection.exec('COMMIT');
-    } catch (error) {
-      connection.exec('ROLLBACK');
-      connection.close();
-      throw error;
+  const seedMarker = connection.prepare("SELECT value FROM app_meta WHERE key = 'cards_seed_initialized'").get();
+  if (!seedMarker) {
+    const existingCards = connection.prepare('SELECT COUNT(*) AS total FROM cards').get().total;
+    if (existingCards === 0) {
+      const seedCards = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+      if (!Array.isArray(seedCards)) throw new TypeError('O arquivo de seed precisa conter uma lista de cards.');
+      const insert = connection.prepare(`
+        INSERT INTO cards (type, title, category, summary, details, tags_json, image, sort_order)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `);
+      connection.exec('BEGIN');
+      try {
+        seedCards.forEach((card, index) => {
+          const valid = validateCard({ ...card, sortOrder: card.sortOrder ?? index });
+          insert.run(valid.type, valid.title, valid.category, valid.summary, valid.details,
+            JSON.stringify(valid.tags), valid.image, valid.sortOrder);
+        });
+        connection.prepare("INSERT INTO app_meta (key, value) VALUES ('cards_seed_initialized', '1')").run();
+        connection.exec('COMMIT');
+      } catch (error) {
+        connection.exec('ROLLBACK');
+        connection.close();
+        throw error;
+      }
+    } else {
+      connection.prepare("INSERT INTO app_meta (key, value) VALUES ('cards_seed_initialized', '1')").run();
     }
   }
 

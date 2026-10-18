@@ -35,6 +35,10 @@ function makeCardInput(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
     throw new TypeError('Envie os dados do card em JSON.');
   }
+  const image = body.image === undefined || body.image === null || body.image === '' ? null : body.image;
+  if (image !== null && typeof image !== 'string') throw new TypeError('Imagem inválida.');
+  const sortOrder = body.sortOrder === undefined ? 0 : body.sortOrder;
+  if (!Number.isInteger(sortOrder) || sortOrder < 0) throw new TypeError('Ordem inválida.');
   return {
     type: body.type,
     title: body.title,
@@ -42,8 +46,8 @@ function makeCardInput(body) {
     summary: body.summary,
     details: body.details,
     tags: body.tags,
-    image: body.image || null,
-    sortOrder: body.sortOrder === undefined ? 0 : Number(body.sortOrder)
+    image,
+    sortOrder
   };
 }
 

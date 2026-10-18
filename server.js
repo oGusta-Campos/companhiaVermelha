@@ -2,6 +2,7 @@ const crypto = require('node:crypto');
 const path = require('node:path');
 const { createApp } = require('./server/app');
 const { initializeDatabase } = require('./server/database');
+const { startLocalServer } = require('./server/startup');
 
 const ROOT = __dirname;
 const PORT = Number(process.env.PORT || 3000);
@@ -20,23 +21,19 @@ const app = createApp({
   publicDir: ROOT
 });
 
-const server = app.listen(PORT, '127.0.0.1', () => {
-  console.log(`Companhia Vermelha aberta em: http://127.0.0.1:${PORT}/`);
-  if (initialAdminPassword) {
-    console.log('Acesso inicial de administrador (guarde esta senha; ela não será exibida novamente):');
-    console.log(`Usuário: admin`);
-    console.log(`Senha: ${initialAdminPassword}`);
+const server = startLocalServer(app, {
+  port: PORT,
+  initialAdminPassword,
+  logger: console,
+  onError(error) {
+    if (error.code === 'EADDRINUSE') {
+      console.error(`A porta ${PORT} já está em uso. No PowerShell, tente $env:PORT=3001; npm start.`);
+    } else {
+      console.error(`Não foi possível iniciar o servidor: ${error.message}`);
+    }
+    db.close();
+    process.exitCode = 1;
   }
-});
-
-server.on('error', (error) => {
-  if (error.code === 'EADDRINUSE') {
-    console.error(`A porta ${PORT} já está em uso. No PowerShell, tente $env:PORT=3001; npm start.`);
-  } else {
-    console.error(`Não foi possível iniciar o servidor: ${error.message}`);
-  }
-  db.close();
-  process.exitCode = 1;
 });
 
 function shutdown() {

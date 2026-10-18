@@ -217,17 +217,39 @@ test('disponibiliza formulário de login e painel administrativo com papéis e C
     title: '<script>texto</script>',
     category: 'História',
     summary: 'Resumo criado no painel',
-    details: 'Detalhes do artigo',
+    details: '<script>detalhes</script>',
     tags: ['história'],
     image: 'assets/images/cuba.jpg',
     sortOrder: 20
   };
-  const invalidImage = await fetch(`${baseUrl}/api/admin/cards`, {
-    method: 'POST',
-    headers: { cookie: adminCookie, 'content-type': 'application/json' },
-    body: JSON.stringify({ ...cardInput, image: 'assets/images/../secret.jpg' })
-  });
-  assert.equal(invalidImage.status, 400);
+  const cardsBeforeInvalidInput = await fetch(`${baseUrl}/api/admin/cards?type=article`, {
+    headers: { cookie: adminCookie }
+  }).then((response) => response.json());
+  for (const image of ['assets/images/../secret.jpg', 'C:\\outside.jpg', 'assets/outside.jpg']) {
+    const invalidImage = await fetch(`${baseUrl}/api/admin/cards`, {
+      method: 'POST',
+      headers: { cookie: adminCookie, 'content-type': 'application/json' },
+      body: JSON.stringify({ ...cardInput, image })
+    });
+    assert.equal(invalidImage.status, 400, `deve recusar imagem ${image}`);
+  }
+  for (const invalidCard of [
+    { ...cardInput, image: false },
+    { ...cardInput, sortOrder: true },
+    { ...cardInput, title: 123 },
+    { ...cardInput, details: undefined }
+  ]) {
+    const invalidResponse = await fetch(`${baseUrl}/api/admin/cards`, {
+      method: 'POST',
+      headers: { cookie: adminCookie, 'content-type': 'application/json' },
+      body: JSON.stringify(invalidCard)
+    });
+    assert.equal(invalidResponse.status, 400);
+  }
+  const cardsAfterInvalidInput = await fetch(`${baseUrl}/api/admin/cards?type=article`, {
+    headers: { cookie: adminCookie }
+  }).then((response) => response.json());
+  assert.equal(cardsAfterInvalidInput.length, cardsBeforeInvalidInput.length, 'entrada inválida não deve gravar cards');
 
   const createCard = await fetch(`${baseUrl}/api/admin/cards`, {
     method: 'POST',
@@ -237,6 +259,7 @@ test('disponibiliza formulário de login e painel administrativo com papéis e C
   assert.equal(createCard.status, 201);
   const createdCard = await createCard.json();
   assert.equal(createdCard.title, '<script>texto</script>');
+  assert.equal(createdCard.details, '<script>detalhes</script>');
   assert.equal(createdCard.image, 'assets/images/cuba.jpg');
   const rawPublicCard = await fetch(`${baseUrl}/api/cards?type=article`).then((response) => response.json());
   assert.ok(rawPublicCard.some((card) => card.title === '<script>texto</script>'));
