@@ -1,0 +1,82 @@
+[
+  {
+    "type": "destination",
+    "title": "Cuba",
+    "category": "Cuba",
+    "summary": "História, arquitetura, música, cultura caribenha e uma sociedade única para conhecer de perto.",
+    "details": "Capital: Havana. Principais destinos: Havana, Varadero e Trinidad. Duração sugerida: 7 a 10 dias. Uma jornada entre patrimônio histórico, música, arquitetura e cotidiano cubano.",
+    "tags": ["Cultura", "História", "Arquitetura", "Pesquisa", "Turismo"],
+    "image": "assets/images/cuba.jpg",
+    "sortOrder": 0
+  },
+  {
+    "type": "destination",
+    "title": "China",
+    "category": "China",
+    "summary": "Uma jornada entre tradições milenares, megacidades, inovação tecnológica e transformações sociais.",
+    "details": "Capital: Pequim. Principais destinos: Pequim, Xangai, Shenzhen e Xi'an. Duração sugerida: 10 a 14 dias. A escolha das cidades pode combinar patrimônio, cultura e inovação.",
+    "tags": ["História", "Tecnologia", "Cultura", "Economia", "Turismo"],
+    "image": "assets/images/china.jpg",
+    "sortOrder": 1
+  },
+  {
+    "type": "destination",
+    "title": "Vietnã",
+    "category": "Vietnã",
+    "summary": "Conheça um país marcado por história, crescimento econômico, cultura vibrante e paisagens impressionantes.",
+    "details": "Capital: Hanói. Principais destinos: Hanói, Huế, Ho Chi Minh e Baía de Ha Long. Duração sugerida: 8 a 12 dias. Uma viagem que aproxima paisagens, memória e vida cotidiana.",
+    "tags": ["Natureza", "História", "Cultura", "Gastronomia", "Turismo"],
+    "image": "assets/images/vietna.jpg",
+    "sortOrder": 2
+  },
+  {
+    "type": "article",
+    "title": "O que conhecer em Havana além dos pontos turísticos tradicionais",
+    "category": "Cuba",
+    "summary": "Bairros, ateliês e rotinas locais que revelam uma Havana pouco vista pelos roteiros comuns.",
+    "details": "Havana se revela melhor quando o roteiro alterna lugares conhecidos com tempo para observar a vida cotidiana. Arquitetura, música, espaços criativos e conversas nas ruas ajudam a compor uma visita mais próxima da cidade real.\n\nExplore o Centro Histórico com calma e repare nos diferentes estilos arquitetônicos. Reserve tempo para caminhar por Centro Habana e observar o ritmo dos bairros. Inclua ateliês, apresentações musicais e pequenos espaços culturais no roteiro.",
+    "tags": ["Cuba", "Cultura", "Turismo"],
+    "image": "assets/images/cuba.jpg",
+    "sortOrder": 0
+  },
+  {
+    "type": "article",
+    "title": "Pequim ou Xangai: qual cidade visitar primeiro?",
+    "category": "China",
+    "summary": "Um comparativo direto entre a capital histórica e a metrópole futurista.",
+    "details": "Pequim e Xangai oferecem experiências distintas. A capital combina marcos históricos e grandes eixos urbanos; Xangai reúne bairros históricos, arquitetura contemporânea e uma atmosfera metropolitana. A escolha depende do tempo disponível e do tema da viagem.\n\nEscolha Pequim se a prioridade for história, patrimônio e instituições culturais. Considere Xangai para observar urbanismo, design e a vida de uma grande metrópole. Com mais dias, combine as duas cidades e compare seus contrastes no mesmo roteiro.",
+    "tags": ["China", "Turismo", "Cultura"],
+    "image": "assets/images/china.jpg",
+    "sortOrder": 1
+  },
+  {
+    "type": "article",
+    "title": "10 experiências culturais para conhecer no Vietnã",
+    "category": "Vietnã",
+    "summary": "De mercados flutuantes a cerimônias tradicionais, um guia prático de vivências.",
+    "details": "Conhecer o Vietnã também é prestar atenção aos costumes e aos encontros cotidianos. Mercados, culinária, paisagens e espaços de memória podem fazer parte de uma viagem equilibrada entre experiências culturais e tempo livre.\n\nVisite mercados locais com respeito às rotinas de quem trabalha e compra ali. Experimente a culinária regional e conheça os ingredientes presentes em cada prato. Inclua paisagens naturais e locais de memória sem tentar concentrar tudo em poucos dias.",
+    "tags": ["Vietnã", "Cultura", "Turismo"],
+    "image": "assets/images/vietna.jpg",
+    "sortOrder": 2
+  },
+  {
+    "type": "article",
+    "title": "Como funciona uma viagem acadêmica internacional",
+    "category": "Educação",
+    "summary": "Etapas de planejamento, documentação e estrutura de um roteiro acadêmico.",
+    "details": "Uma viagem acadêmica começa com objetivos de aprendizagem claros e um roteiro que conecte visitas, atividades e tempo de estudo. A organização antecipada ajuda o grupo a aproveitar melhor cada encontro e a cuidar dos requisitos práticos.\n\nDefina o tema, o perfil dos participantes e os resultados esperados. Organize visitas e atividades em uma sequência coerente com os objetivos do grupo. Planeje documentação, acessibilidade, deslocamentos e momentos de descanso.",
+    "tags": ["Educação"],
+    "image": null,
+    "sortOrder": 3
+  },
+  {
+    "type": "article",
+    "title": "China: tradição e tecnologia na mesma viagem",
+    "category": "China",
+    "summary": "Como um mesmo roteiro pode passar por templos milenares e polos de inovação.",
+    "details": "Uma viagem pela China pode aproximar o visitante de diferentes períodos e formas de viver. O roteiro pode combinar espaços históricos, museus, bairros contemporâneos e centros de inovação, sempre considerando as distâncias entre as cidades.\n\nIntercale visitas a locais históricos com experiências urbanas contemporâneas. Reserve tempo para museus, centros culturais e observação da arquitetura. Agrupe atividades por região para reduzir deslocamentos e deixar o roteiro mais confortável.",
+    "tags": ["China", "Cultura", "História"],
+    "image": null,
+    "sortOrder": 4
+  }
+]
