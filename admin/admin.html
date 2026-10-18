@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administração | Companhia Vermelha</title>
+<meta name="description" content="Painel local de administração da Companhia Vermelha.">
+<link rel="icon" type="image/png" href="/assets/images/logo-companhia-vermelha.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#FFFFFF', mist: '#F6F5F2', ink: '#1D1B1A', inksoft: '#5B5652',
+          red: { DEFAULT: '#B8203C', deep: '#7A1029', mist: '#FBEAEE' },
+          gold: { DEFAULT: '#B4933A', deep: '#83691F', mist: '#F6EFDA' },
+          line: '#E8E4DE'
+        },
+        fontFamily: { display: ['Manrope', 'sans-serif'], sans: ['Inter', 'sans-serif'] }
+      }
+    }
+  };
+</script>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="font-sans text-ink antialiased bg-mist min-h-screen">
+<header class="bg-white border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between gap-4">
+    <a href="/index.html" class="flex items-center gap-3 font-display font-extrabold">
+      <img src="/assets/images/logo-companhia-vermelha.png" alt="" class="w-12 h-12 rounded-full object-cover">
+      <span>Companhia Vermelha<br><span class="text-xs uppercase tracking-widest text-red">Administração local</span></span>
+    </a>
+    <div class="flex items-center gap-4 text-sm font-semibold">
+      <a href="/index.html" class="text-inksoft hover:text-red">Ver site</a>
+      <button type="button" data-auth-logout class="text-red hover:text-red-deep">Sair</button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo" class="max-w-7xl mx-auto px-5 md:px-8 py-10 md:py-14">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-9">
+    <div>
+      <p class="text-red font-display font-bold text-xs uppercase tracking-[.18em]">Painel protegido</p>
+      <h1 class="font-display font-extrabold text-3xl md:text-4xl mt-2">Gerenciar o site</h1>
+      <p class="text-inksoft mt-2">Contas e conteúdo local da Companhia Vermelha.</p>
+    </div>
+    <p id="admin-message" class="hidden rounded-xl px-4 py-3 text-sm" role="status"></p>
+  </div>
+
+  <section class="bg-white border border-line rounded-2xl p-6 md:p-8 shadow-sm mb-8" aria-labelledby="users-heading">
+    <div class="mb-6">
+      <p class="text-gold-deep text-xs font-bold uppercase tracking-widest">Acessos</p>
+      <h2 id="users-heading" class="font-display font-extrabold text-2xl mt-1">Usuários</h2>
+      <p class="text-inksoft text-sm mt-2">Crie um acesso comum ou outro administrador.</p>
+    </div>
+    <form id="user-form" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+      <label class="grid gap-2 text-sm font-semibold" for="user-username">Usuário
+        <input id="user-username" name="username" required minlength="3" maxlength="32" autocomplete="off" class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="ex.: professor">
+      </label>
+      <label class="grid gap-2 text-sm font-semibold" for="user-password">Senha inicial
+        <input id="user-password" name="password" type="password" required minlength="10" maxlength="200" autocomplete="new-password" class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="Mínimo de 10 caracteres">
+      </label>
+      <label class="grid gap-2 text-sm font-semibold" for="user-role">Tipo de acesso
+        <select id="user-role" name="role" class="rounded-xl border border-line px-4 py-3 font-normal">
+          <option value="user">Usuário comum</option>
+          <option value="admin">Administrador</option>
+        </select>
+      </label>
+      <button type="submit" class="btn-primary rounded-full px-5 py-3 font-display font-bold">Adicionar usuário</button>
+    </form>
+    <ul id="user-list" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-3" aria-live="polite"></ul>
+  </section>
+
+  <section class="grid xl:grid-cols-[.9fr_1.1fr] gap-8 items-start" aria-label="Gerenciamento de conteúdo">
+    <div class="bg-white border border-line rounded-2xl p-6 md:p-8 shadow-sm">
+      <p class="text-red text-xs font-bold uppercase tracking-widest">Conteúdo</p>
+      <h2 id="card-form-heading" class="font-display font-extrabold text-2xl mt-1">Adicionar card</h2>
+      <p class="text-inksoft text-sm mt-2 mb-6">O texto é exibido como conteúdo, não como HTML.</p>
+      <form id="card-form" class="grid gap-4">
+        <input type="hidden" id="card-id">
+        <label class="grid gap-2 text-sm font-semibold" for="card-type">Página
+          <select id="card-type" name="type" class="rounded-xl border border-line px-4 py-3 font-normal">
+            <option value="destination">Destinos</option>
+            <option value="article">Caderno Vermelho</option>
+          </select>
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="card-title">Título
+          <input id="card-title" name="title" required maxlength="140" class="rounded-xl border border-line px-4 py-3 font-normal">
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="card-category">País ou categoria
+          <input id="card-category" name="category" required maxlength="80" class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="ex.: Cuba ou História">
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="card-summary">Resumo
+          <textarea id="card-summary" name="summary" required maxlength="600" rows="2" class="rounded-xl border border-line px-4 py-3 font-normal"></textarea>
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="card-details">Texto detalhado
+          <textarea id="card-details" name="details" required maxlength="8000" rows="5" class="rounded-xl border border-line px-4 py-3 font-normal"></textarea>
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="card-tags">Tags (separadas por vírgula)
+          <input id="card-tags" name="tags" required class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="Cultura, História, Turismo">
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="card-image">Imagem opcional
+          <input id="card-image" name="image" list="available-images" class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="assets/images/cuba.jpg">
+          <datalist id="available-images">
+            <option value="assets/images/cuba.jpg"></option>
+            <option value="assets/images/china.jpg"></option>
+            <option value="assets/images/vietna.jpg"></option>
+          </datalist>
+          <span class="font-normal text-xs text-inksoft">Informe o caminho de uma imagem já existente em assets/images. Não há upload nesta versão.</span>
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="card-order">Ordem
+          <input id="card-order" name="sortOrder" type="number" min="0" step="1" value="0" class="rounded-xl border border-line px-4 py-3 font-normal">
+        </label>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <button id="card-save" type="submit" class="btn-primary rounded-full px-6 py-3 font-display font-bold">Salvar card</button>
+          <button id="card-cancel" type="button" class="hidden rounded-full px-6 py-3 border border-line font-semibold hover:bg-mist">Cancelar edição</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-white border border-line rounded-2xl p-6 md:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <p class="text-gold-deep text-xs font-bold uppercase tracking-widest">Cards atuais</p>
+          <h2 class="font-display font-extrabold text-2xl mt-1">Conteúdo publicado</h2>
+        </div>
+        <label class="text-sm font-semibold grid gap-2" for="card-filter">Página
+          <select id="card-filter" class="rounded-xl border border-line px-4 py-2.5 font-normal">
+            <option value="destination">Destinos</option>
+            <option value="article">Caderno Vermelho</option>
+          </select>
+        </label>
+      </div>
+      <div id="card-list" class="grid gap-3" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+
+<script src="/js/auth.js" defer></script>
+<script src="/js/admin.js" defer></script>
+</body>
+</html>

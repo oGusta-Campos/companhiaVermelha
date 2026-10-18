@@ -48,6 +48,31 @@ async function startTestServer(t) {
   };
 }
 
+async function startRealSiteServer(t) {
+  assert.ok(appModule, 'server/app.js deve criar o app Express');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'companhia-site-test-'));
+  const { db, initialAdminPassword } = initializeDatabase(
+    path.join(root, 'data', 'test.sqlite'),
+    path.resolve(__dirname, '../data/seed-cards.json')
+  );
+  const app = appModule.createApp({
+    db,
+    sessionSecret: 'test-only-session-secret-32-bytes-minimum',
+    publicDir: path.resolve(__dirname, '..')
+  });
+  const server = http.createServer(app);
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+  t.after(async () => {
+    await new Promise((resolve) => server.close(resolve));
+    db.close();
+    fs.rmSync(root, { recursive: true, force: true });
+  });
+  return { baseUrl: `http://127.0.0.1:${server.address().port}`, initialAdminPassword };
+}
+
 async function login(baseUrl, username, password) {
   const response = await fetch(`${baseUrl}/api/login`, {
     method: 'POST',
@@ -107,6 +132,14 @@ test('permite admin, limita usuário comum e invalida a sessão ao sair', async 
   assert.equal(userPage.status, 403);
   const userApi = await fetch(`${baseUrl}/api/admin/users`, { headers: { cookie: userLogin.cookie } });
   assert.equal(userApi.status, 403);
+  const userCardsApi = await fetch(`${baseUrl}/api/admin/cards`, { headers: { cookie: userLogin.cookie } });
+  assert.equal(userCardsApi.status, 403);
+  const userWrite = await fetch(`${baseUrl}/api/admin/cards`, {
+    method: 'POST',
+    headers: { cookie: userLogin.cookie, 'content-type': 'application/json' },
+    body: JSON.stringify({})
+  });
+  assert.equal(userWrite.status, 403);
 
   const logout = await fetch(`${baseUrl}/api/logout`, {
     method: 'POST',
@@ -117,4 +150,104 @@ test('permite admin, limita usuário comum e invalida a sessão ao sair', async 
   assert.deepEqual(await (await fetch(`${baseUrl}/api/session`, {
     headers: { cookie: logout.headers.get('set-cookie')?.split(';')[0] || adminLogin.cookie }
   })).json(), { authenticated: false, username: null, role: null });
+});
+
+test('disponibiliza formulário de login e painel administrativo com papéis e CRUD', async (t) => {
+  const { baseUrl, initialAdminPassword } = await startRealSiteServer(t);
+
+  const loginPage = await fetch(`${baseUrl}/login.html`);
+  assert.equal(loginPage.status, 200);
+  assert.match(await loginPage.text(), /id="login-form"/);
+  for (const page of ['index.html', 'destinos.html', 'experiencias.html', 'roteiros.html', 'caderno.html', 'contato.html']) {
+    const response = await fetch(`${baseUrl}/${page}`);
+    assert.equal(response.status, 200, `${page} deve continuar público`);
+    const html = await response.text();
+    assert.match(html, /src="\/js\/auth\.js"/, `${page} deve oferecer acesso à conta`);
+  }
+
+  const adminLogin = await login(baseUrl, 'admin', initialAdminPassword);
+  const adminCookie = adminLogin.cookie;
+  const adminPage = await fetch(`${baseUrl}/admin`, { headers: { cookie: adminCookie } });
+  assert.equal(adminPage.status, 200);
+  const adminHtml = await adminPage.text();
+  assert.match(adminHtml, /id="user-form"/);
+  assert.match(adminHtml, /id="card-form"/);
+
+  const userResponse = await fetch(`${baseUrl}/api/admin/users`, {
+    method: 'POST',
+    headers: { cookie: adminCookie, 'content-type': 'application/json' },
+    body: JSON.stringify({ username: 'professor', password: 'senha-forte-123', role: 'user' })
+  });
+  assert.equal(userResponse.status, 201);
+  assert.deepEqual(await userResponse.json().then(({ username, role }) => ({ username, role })), {
+    username: 'professor', role: 'user'
+  });
+
+  const duplicateUser = await fetch(`${baseUrl}/api/admin/users`, {
+    method: 'POST',
+    headers: { cookie: adminCookie, 'content-type': 'application/json' },
+    body: JSON.stringify({ username: 'PROFESSOR', password: 'senha-forte-123', role: 'admin' })
+  });
+  assert.equal(duplicateUser.status, 409);
+
+  const invalidRole = await fetch(`${baseUrl}/api/admin/users`, {
+    method: 'POST',
+    headers: { cookie: adminCookie, 'content-type': 'application/json' },
+    body: JSON.stringify({ username: 'teste-admin', password: 'senha-forte-123', role: 'owner' })
+  });
+  assert.equal(invalidRole.status, 400);
+
+  const adminUser = await fetch(`${baseUrl}/api/admin/users`, {
+    method: 'POST',
+    headers: { cookie: adminCookie, 'content-type': 'application/json' },
+    body: JSON.stringify({ username: 'outro-admin', password: 'senha-forte-456', role: 'admin' })
+  });
+  assert.equal(adminUser.status, 201);
+  const secondAdmin = await login(baseUrl, 'outro-admin', 'senha-forte-456');
+  assert.equal((await secondAdmin.response.json()).role, 'admin');
+  assert.equal((await fetch(`${baseUrl}/api/admin/users`, { headers: { cookie: secondAdmin.cookie } })).status, 200);
+
+  const cardInput = {
+    type: 'article',
+    title: '<script>texto</script>',
+    category: 'História',
+    summary: 'Resumo criado no painel',
+    details: 'Detalhes do artigo',
+    tags: ['história'],
+    image: 'assets/images/cuba.jpg',
+    sortOrder: 20
+  };
+  const invalidImage = await fetch(`${baseUrl}/api/admin/cards`, {
+    method: 'POST',
+    headers: { cookie: adminCookie, 'content-type': 'application/json' },
+    body: JSON.stringify({ ...cardInput, image: 'assets/images/../secret.jpg' })
+  });
+  assert.equal(invalidImage.status, 400);
+
+  const createCard = await fetch(`${baseUrl}/api/admin/cards`, {
+    method: 'POST',
+    headers: { cookie: adminCookie, 'content-type': 'application/json' },
+    body: JSON.stringify(cardInput)
+  });
+  assert.equal(createCard.status, 201);
+  const createdCard = await createCard.json();
+  assert.equal(createdCard.title, '<script>texto</script>');
+  assert.equal(createdCard.image, 'assets/images/cuba.jpg');
+  const rawPublicCard = await fetch(`${baseUrl}/api/cards?type=article`).then((response) => response.json());
+  assert.ok(rawPublicCard.some((card) => card.title === '<script>texto</script>'));
+
+  const patchCard = await fetch(`${baseUrl}/api/admin/cards/${createdCard.id}`, {
+    method: 'PATCH',
+    headers: { cookie: adminCookie, 'content-type': 'application/json' },
+    body: JSON.stringify({ ...cardInput, title: 'Artigo editado' })
+  });
+  assert.equal((await patchCard.json()).title, 'Artigo editado');
+
+  const publicCards = await fetch(`${baseUrl}/api/cards?type=article`);
+  assert.ok((await publicCards.json()).some((card) => card.title === 'Artigo editado'));
+
+  const deleteCard = await fetch(`${baseUrl}/api/admin/cards/${createdCard.id}`, {
+    method: 'DELETE', headers: { cookie: adminCookie }
+  });
+  assert.deepEqual(await deleteCard.json(), { deleted: true });
 });

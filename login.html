@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar | Companhia Vermelha</title>
+<meta name="description" content="Acesso opcional à Companhia Vermelha.">
+<link rel="icon" type="image/png" href="assets/images/logo-companhia-vermelha.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#FFFFFF', mist: '#F6F5F2', ink: '#1D1B1A', inksoft: '#5B5652',
+          red: { DEFAULT: '#B8203C', deep: '#7A1029', mist: '#FBEAEE' },
+          gold: { DEFAULT: '#B4933A', deep: '#83691F', mist: '#F6EFDA' },
+          line: '#E8E4DE'
+        },
+        fontFamily: { display: ['Manrope', 'sans-serif'], sans: ['Inter', 'sans-serif'] }
+      }
+    }
+  };
+</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-sans text-ink antialiased bg-mist">
+<main id="conteudo" class="min-h-screen grid lg:grid-cols-2">
+  <section class="bg-red-deep text-white min-h-[260px] lg:min-h-screen flex flex-col justify-between p-8 md:p-14">
+    <a href="index.html" class="inline-flex items-center gap-4 w-fit">
+      <img src="assets/images/logo-companhia-vermelha.png" alt="" class="w-16 h-16 rounded-full border-2 border-white/60 object-cover">
+      <span class="font-display font-extrabold tracking-tight">Companhia<br>Vermelha</span>
+    </a>
+    <div class="max-w-lg py-12">
+      <p class="uppercase tracking-[.2em] text-sm text-white/70 font-semibold">Acesso opcional</p>
+      <h1 class="font-display font-extrabold text-4xl md:text-5xl mt-4 leading-tight">Entre para continuar sua jornada.</h1>
+      <p class="mt-5 text-white/80 leading-relaxed">Você também pode explorar o site sem fazer login. A área administrativa é exclusiva para administradores.</p>
+    </div>
+    <a href="index.html" class="text-sm text-white/80 hover:text-white underline underline-offset-4">Voltar ao site público</a>
+  </section>
+
+  <section class="flex items-center justify-center p-6 md:p-12">
+    <div class="w-full max-w-md bg-white rounded-3xl border border-line shadow-xl shadow-ink/5 p-7 md:p-10">
+      <p class="font-display text-red font-bold uppercase tracking-widest text-xs">Conta local</p>
+      <h2 class="font-display font-extrabold text-3xl mt-3">Entrar</h2>
+      <p class="text-inksoft mt-2">Use o usuário e a senha fornecidos pelo administrador.</p>
+      <form id="login-form" class="mt-8 grid gap-5" novalidate>
+        <label class="grid gap-2 text-sm font-semibold" for="login-username">
+          Usuário
+          <input id="login-username" name="username" autocomplete="username" required maxlength="32" class="rounded-xl border border-line px-4 py-3 font-normal focus:border-red" placeholder="Seu nome de usuário">
+        </label>
+        <label class="grid gap-2 text-sm font-semibold" for="login-password">
+          Senha
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required class="rounded-xl border border-line px-4 py-3 font-normal focus:border-red" placeholder="Sua senha">
+        </label>
+        <p id="login-message" class="hidden rounded-xl bg-red-mist text-red-deep px-4 py-3 text-sm" role="alert"></p>
+        <button id="login-submit" type="submit" class="btn-primary rounded-full px-6 py-3.5 font-display font-bold">Acessar</button>
+      </form>
+      <p class="mt-6 text-xs text-inksoft">Este acesso funciona apenas na instalação local do projeto.</p>
+    </div>
+  </section>
+</main>
+<script src="js/auth.js" defer></script>
+</body>
+</html>

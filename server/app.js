@@ -8,6 +8,24 @@ const PUBLIC_PAGES = [
   'index.html', 'destinos.html', 'experiencias.html', 'roteiros.html', 'caderno.html', 'contato.html'
 ];
 const CARD_TYPES = new Set(['destination', 'article']);
+const AUTH_SCRIPT = '<script src="/js/auth.js" defer></script>';
+
+function sendPublicPage(publicDir, page) {
+  return (req, res) => {
+    fs.readFile(path.join(publicDir, page), 'utf8', (error, markup) => {
+      if (error) return res.status(error.code === 'ENOENT' ? 404 : 500).send('Página não encontrada.');
+      const scripts = [];
+      if (!markup.includes('/js/auth.js') && !markup.includes('js/auth.js')) scripts.push(AUTH_SCRIPT);
+      if (scripts.length) {
+        const injected = scripts.join('\n');
+        markup = /<\/body\s*>/i.test(markup)
+          ? markup.replace(/<\/body\s*>/i, `${injected}\n</body>`)
+          : `${markup}\n${injected}`;
+      }
+      return res.type('html').send(markup);
+    });
+  };
+}
 
 function makeCardInput(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
@@ -69,9 +87,9 @@ function createApp({ db, sessionSecret, publicDir }) {
     }
   }));
 
-  app.get('/', (req, res) => res.sendFile(path.join(publicDir, 'index.html')));
+  app.get('/', sendPublicPage(publicDir, 'index.html'));
   PUBLIC_PAGES.forEach((page) => {
-    app.get(`/${page}`, (req, res) => res.sendFile(path.join(publicDir, page)));
+    app.get(`/${page}`, sendPublicPage(publicDir, page));
   });
   app.get('/login.html', (req, res) => res.sendFile(path.join(publicDir, 'login.html')));
   for (const folder of ['css', 'js', 'assets']) {
