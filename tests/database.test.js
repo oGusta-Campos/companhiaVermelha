@@ -138,6 +138,22 @@ test('persiste usuários e lista apenas informações seguras', async (t) => {
   assert.equal(Object.hasOwn(db.listUsers()[1], 'passwordHash'), false);
 });
 
+test('apaga contas de usuários e administradores preservando o último admin', async (t) => {
+  const { db } = await openDatabase(t);
+  const admin = db.getUserByUsername('admin');
+  assert.throws(() => db.deleteUser(admin.id), { code: 'LAST_ADMIN' });
+  assert.ok(db.getUserById(admin.id));
+  const user = db.createUser({ username: 'removivel', password: '1', role: 'user' });
+  const otherAdmin = db.createUser({ username: 'segundo-admin', password: '2', role: 'admin' });
+  assert.equal(db.deleteUser(user.id), true);
+  assert.equal(db.getUserById(user.id), null);
+  assert.equal(db.getUserByUsername('removivel'), null);
+  assert.equal(db.deleteUser(user.id), false);
+  assert.equal(db.deleteUser(otherAdmin.id), true);
+  assert.throws(() => db.deleteUser(admin.id), { code: 'LAST_ADMIN' });
+  assert.deepEqual(db.listUsers().map((saved) => saved.id), [admin.id]);
+});
+
 test('não restaura o seed depois que todos os cards são apagados', async (t) => {
   const opened = await openDatabase(t);
   const { db } = opened;

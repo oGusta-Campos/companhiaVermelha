@@ -18,6 +18,7 @@
   const cardSaveButton = document.getElementById('card-save');
   const cardCancelButton = document.getElementById('card-cancel');
   const knownCards = new Map();
+  const knownUsers = new Map();
 
   function showMessage(text, isError) {
     message.textContent = text;
@@ -50,14 +51,30 @@
   }
 
   async function refreshUsers() {
-    const users = await request('/api/admin/users');
+    const [users, session] = await Promise.all([request('/api/admin/users'), request('/api/session')]);
+    const adminCount = users.filter((user) => user.role === 'admin').length;
+    knownUsers.clear();
     userList.replaceChildren();
     users.forEach((user) => {
+      knownUsers.set(String(user.id), user);
+      const isSelf = user.username === session.username;
       const item = document.createElement('li');
       item.className = 'rounded-xl border border-line bg-mist px-4 py-3 flex items-center justify-between gap-3';
-      addText(item, 'span', user.username, 'font-semibold text-sm break-all');
-      addText(item, 'span', user.role === 'admin' ? 'Administrador' : 'Comum',
-        'shrink-0 text-xs font-bold uppercase tracking-wide text-red');
+      const content = document.createElement('div');
+      content.className = 'min-w-0';
+      addText(content, 'span', user.username + (isSelf ? ' (você)' : ''), 'block font-semibold text-sm break-all');
+      addText(content, 'span', user.role === 'admin' ? 'Administrador' : 'Comum',
+        'block mt-1 text-xs font-bold uppercase tracking-wide text-red');
+      const deleteButton = document.createElement('button');
+      deleteButton.type = 'button';
+      deleteButton.textContent = 'Apagar';
+      deleteButton.dataset.userId = String(user.id);
+      deleteButton.className = 'shrink-0 rounded-full border border-red/30 px-4 py-2 text-sm font-semibold text-red hover:bg-red-mist disabled:opacity-40 disabled:cursor-not-allowed';
+      deleteButton.setAttribute('aria-label', `Apagar o usuário ${user.username}`);
+      deleteButton.disabled = isSelf || (user.role === 'admin' && adminCount <= 1);
+      deleteButton.title = isSelf ? 'Você não pode apagar a conta que está usando.' :
+        (deleteButton.disabled ? 'Não é possível apagar o último administrador.' : 'Apagar esta conta');
+      item.append(content, deleteButton);
       userList.appendChild(item);
     });
   }
@@ -132,6 +149,23 @@
       userForm.reset();
       showMessage(`Usuário ${user.username} adicionado. Anote a senha informada no cadastro.`, false);
       await refreshUsers();
+    } catch (error) {
+      showMessage(error.message, true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  userList.addEventListener('click', async (event) => {
+    const button = event.target.closest('button[data-user-id]');
+    if (!button || button.disabled) return;
+    const user = knownUsers.get(button.dataset.userId);
+    if (!user || !window.confirm(`Apagar o usuário “${user.username}”? Essa conta não poderá mais fazer login.`)) return;
+    button.disabled = true;
+    try {
+      await request(`/api/admin/users/${encodeURIComponent(user.id)}`, { method: 'DELETE' });
+      await refreshUsers();
+      showMessage(`Usuário ${user.username} apagado.`, false);
     } catch (error) {
       showMessage(error.message, true);
     } finally {

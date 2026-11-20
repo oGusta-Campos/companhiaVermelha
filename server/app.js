@@ -156,6 +156,19 @@ function createApp({ db, sessionSecret, publicDir }) {
     }
   });
 
+  app.delete('/api/admin/users/:id', auth.requireAdmin, (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isSafeInteger(id) || id < 1) return res.status(400).json({ error: 'Identificador de usuário inválido.' });
+    if (id === req.user.id) return res.status(409).json({ error: 'Você não pode apagar a conta que está usando.' });
+    try {
+      if (!db.deleteUser(id)) return res.status(404).json({ error: 'Usuário não encontrado.' });
+      return res.json({ deleted: true });
+    } catch (error) {
+      if (error.code === 'LAST_ADMIN') return res.status(409).json({ error: error.message });
+      return sendError(res, error);
+    }
+  });
+
   app.get('/api/admin/cards', auth.requireAdmin, (req, res) => {
     const type = req.query.type;
     if (type && !CARD_TYPES.has(type)) return res.status(400).json({ error: 'Tipo de card inválido.' });

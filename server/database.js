@@ -87,8 +87,8 @@ function validateUser({ username, password, role }) {
   if (typeof username !== 'string' || !/^[a-zA-Z0-9_.-]{3,32}$/.test(username)) {
     throw new TypeError('Nome de usuário inválido. Use de 3 a 32 letras, números, ponto, hífen ou sublinhado.');
   }
-  if (typeof password !== 'string' || password.length < 10 || password.length > 200) {
-    throw new TypeError('A senha deve ter de 10 a 200 caracteres.');
+  if (typeof password !== 'string') {
+    throw new TypeError('A senha deve ser um texto.');
   }
   if (!USER_ROLES.has(role)) throw new TypeError('Papel de usuário inválido.');
 }
@@ -214,6 +214,20 @@ function initializeDatabase(dbPath, seedPath) {
         INSERT INTO users (username, password_hash, password_salt, role) VALUES (?, ?, ?, ?)
       `).run(user.username.trim(), passwordHash, passwordSalt, user.role);
       return toUser(getUserById.get(Number(result.lastInsertRowid)));
+    },
+    deleteUser(id) {
+      const result = connection.prepare(`
+        DELETE FROM users WHERE id = ? AND (
+          role <> 'admin' OR (SELECT COUNT(*) FROM users WHERE role = 'admin') > 1
+        )
+      `).run(id);
+      if (result.changes > 0) return true;
+      if (getUserById.get(id)?.role === 'admin') {
+        const error = new Error('Não é possível apagar o último administrador.');
+        error.code = 'LAST_ADMIN';
+        throw error;
+      }
+      return false;
     },
     close() {
       connection.close();

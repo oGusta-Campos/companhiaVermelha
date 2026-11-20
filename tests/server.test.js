@@ -152,6 +152,72 @@ test('permite admin, limita usuário comum e invalida a sessão ao sair', async 
   })).json(), { authenticated: false, username: null, role: null });
 });
 
+test('só admin apaga outras contas e contas apagadas perdem o acesso imediatamente', async (t) => {
+  const { baseUrl, initialAdminPassword } = await startTestServer(t);
+  const adminLogin = await login(baseUrl, 'admin', initialAdminPassword);
+  const users = await fetch(`${baseUrl}/api/admin/users`, { headers: { cookie: adminLogin.cookie } }).then((response) => response.json());
+  const admin = users.find((user) => user.username === 'admin');
+  const aluno = users.find((user) => user.username === 'aluno');
+  const userLogin = await login(baseUrl, 'aluno', 'senha-aluno-123');
+  const remove = (id, cookie) => fetch(`${baseUrl}/api/admin/users/${id}`, {
+    method: 'DELETE', headers: cookie ? { cookie } : {}
+  });
+  assert.equal((await remove(aluno.id)).status, 401);
+  assert.equal((await remove(admin.id, userLogin.cookie)).status, 403);
+  const self = await remove(admin.id, adminLogin.cookie);
+  assert.equal(self.status, 409);
+  assert.match((await self.json()).error, /conta que está usando/);
+  for (const id of ['abc', '-1', '0', '1.5', '9007199254740992']) {
+    assert.equal((await remove(id, adminLogin.cookie)).status, 400);
+  }
+  assert.equal((await remove(999999, adminLogin.cookie)).status, 404);
+  const deleted = await remove(aluno.id, adminLogin.cookie);
+  assert.equal(deleted.status, 200);
+  assert.deepEqual(await deleted.json(), { deleted: true });
+  assert.equal((await remove(aluno.id, adminLogin.cookie)).status, 404);
+  assert.equal((await login(baseUrl, 'aluno', 'senha-aluno-123')).response.status, 401);
+  assert.equal((await fetch(`${baseUrl}/api/admin/users`, { headers: { cookie: userLogin.cookie } })).status, 401);
+  assert.equal((await fetch(`${baseUrl}/api/session`, { headers: { cookie: userLogin.cookie } }).then((response) => response.json())).authenticated, false);
+
+  const created = await fetch(`${baseUrl}/api/admin/users`, {
+    method: 'POST', headers: { cookie: adminLogin.cookie, 'content-type': 'application/json' },
+    body: JSON.stringify({ username: 'admin-removivel', password: '1', role: 'admin' })
+  }).then((response) => response.json());
+  const otherLogin = await login(baseUrl, 'admin-removivel', '1');
+  assert.equal((await remove(created.id, adminLogin.cookie)).status, 200);
+  assert.equal((await fetch(`${baseUrl}/api/admin/users`, { headers: { cookie: otherLogin.cookie } })).status, 401);
+  const remaining = await fetch(`${baseUrl}/api/admin/users`, { headers: { cookie: adminLogin.cookie } }).then((response) => response.json());
+  assert.deepEqual(remaining.map((user) => user.id), [admin.id]);
+});
+
+test('aceita senhas de qualquer tamanho para usuários comuns e administradores', async (t) => {
+  const { baseUrl, initialAdminPassword } = await startRealSiteServer(t);
+  const adminLogin = await login(baseUrl, 'admin', initialAdminPassword);
+  const adminHtml = await fetch(`${baseUrl}/admin`, { headers: { cookie: adminLogin.cookie } }).then((response) => response.text());
+  const loginHtml = await fetch(`${baseUrl}/login.html`).then((response) => response.text());
+  for (const [html, id] of [[adminHtml, 'user-password'], [loginHtml, 'login-password']]) {
+    const input = html.match(new RegExp(`<input[^>]*id="${id}"[^>]*>`));
+    assert.ok(input, `${id} deve existir`);
+    assert.doesNotMatch(input[0], /\b(?:minlength|maxlength|required)\b/);
+  }
+  for (const role of ['user', 'admin']) {
+    for (const [index, password] of ['', '1', 'x'.repeat(250)].entries()) {
+      const username = `livre-${role}-${index}`;
+      const created = await fetch(`${baseUrl}/api/admin/users`, {
+        method: 'POST',
+        headers: { cookie: adminLogin.cookie, 'content-type': 'application/json' },
+        body: JSON.stringify({ username, password, role })
+      });
+      assert.equal(created.status, 201, `${role}: senha com ${password.length} caracteres`);
+      const signedIn = await login(baseUrl, username, password);
+      assert.equal(signedIn.response.status, 200);
+      assert.equal((await signedIn.response.json()).role, role);
+      const access = await fetch(`${baseUrl}/api/admin/users`, { headers: { cookie: signedIn.cookie } });
+      assert.equal(access.status, role === 'admin' ? 200 : 403);
+    }
+  }
+});
+
 test('disponibiliza formulário de login e painel administrativo com papéis e CRUD', async (t) => {
   const { baseUrl, initialAdminPassword } = await startRealSiteServer(t);
 

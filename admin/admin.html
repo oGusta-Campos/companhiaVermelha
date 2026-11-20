@@ -55,14 +55,14 @@
     <div class="mb-6">
       <p class="text-gold-deep text-xs font-bold uppercase tracking-widest">Acessos</p>
       <h2 id="users-heading" class="font-display font-extrabold text-2xl mt-1">Usuários</h2>
-      <p class="text-inksoft text-sm mt-2">Crie um acesso comum ou outro administrador.</p>
+      <p class="text-inksoft text-sm mt-2">Crie acessos comuns ou administradores e apague contas existentes.</p>
     </div>
     <form id="user-form" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
       <label class="grid gap-2 text-sm font-semibold" for="user-username">Usuário
         <input id="user-username" name="username" required minlength="3" maxlength="32" autocomplete="off" class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="ex.: professor">
       </label>
       <label class="grid gap-2 text-sm font-semibold" for="user-password">Senha inicial
-        <input id="user-password" name="password" type="password" required minlength="10" maxlength="200" autocomplete="new-password" class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="Mínimo de 10 caracteres">
+        <input id="user-password" name="password" type="password" autocomplete="new-password" class="rounded-xl border border-line px-4 py-3 font-normal" placeholder="Senha de qualquer tamanho">
       </label>
       <label class="grid gap-2 text-sm font-semibold" for="user-role">Tipo de acesso
         <select id="user-role" name="role" class="rounded-xl border border-line px-4 py-3 font-normal">
@@ -73,6 +73,7 @@
       <button type="submit" class="btn-primary rounded-full px-5 py-3 font-display font-bold">Adicionar usuário</button>
     </form>
     <ul id="user-list" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-3" aria-live="polite"></ul>
+    <p class="text-inksoft text-xs mt-3">Sua conta atual e o último administrador não podem ser apagados.</p>
   </section>
 
   <section class="grid xl:grid-cols-[.9fr_1.1fr] gap-8 items-start" aria-label="Gerenciamento de conteúdo">
