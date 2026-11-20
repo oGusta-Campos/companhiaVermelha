@@ -16,8 +16,12 @@ const DB_PATH = process.env.DB_PATH || (IS_VERCEL
   ? path.join(os.tmpdir(), 'companhia-vermelha.sqlite')
   : path.join(__dirname, 'data', 'companhia-vermelha.sqlite'));
 
+// Senha padrão simples, pois este site é só um projeto de teste.
+// Defina ADMIN_PASSWORD para usar outra. Ela só vale quando o banco ainda não tem admin.
+const DEFAULT_ADMIN_PASSWORD = 'admin123';
+
 const { db, initialAdminPassword } = initializeDatabase(DB_PATH, SEED_PATH, {
-  adminPassword: process.env.ADMIN_PASSWORD
+  adminPassword: process.env.ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD
 });
 const app = createApp({
   db,
@@ -28,9 +32,6 @@ const app = createApp({
 });
 
 if (IS_VERCEL) {
-  if (initialAdminPassword) {
-    console.warn('ADMIN_PASSWORD não definida: a senha do admin muda a cada nova instância da função.');
-  }
   module.exports = app;
 } else {
   if (!Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {

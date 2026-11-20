@@ -35,7 +35,7 @@ $env:PORT=3001; npm start
 - As páginas públicas não exigem login.
 - O formulário de acesso fica em <http://127.0.0.1:3000/login.html>.
 - O painel fica em <http://127.0.0.1:3000/admin> e exige perfil de administrador.
-- Na primeira execução, o terminal informa a senha aleatória inicial do usuário `admin`. Guarde-a: por segurança, ela não é exibida novamente.
+- Login padrão do administrador: usuário `admin`, senha `admin123`. A senha é simples de propósito, porque o site é só um teste. Para usar outra, defina a variável `ADMIN_PASSWORD` antes de iniciar. A senha padrão só vale quando o banco ainda não tem administrador; num banco antigo, apague `data/companhia-vermelha.sqlite` para recriá-lo.
 - Depois de entrar como admin, use a área de usuários para criar acessos comuns ou outros administradores. O botão “Apagar” exclui uma conta após confirmação e encerra seu acesso. Sua própria conta e o último administrador ficam protegidos.
 - No painel, escolha entre Destinos e Caderno Vermelho para adicionar, editar ou apagar cards. A imagem deve ser um caminho de arquivo já existente em `public/assets/images/` (informado como `assets/images/...`); esta versão não tem upload.
 
@@ -57,9 +57,9 @@ Ao rodar localmente, o servidor escuta somente em `127.0.0.1`. Para publicar na 
 
 O `server.js` detecta o Vercel (variável `VERCEL`) e, nesse caso, exporta o app Express em vez de abrir uma porta e grava o SQLite no diretório temporário, porque o restante do disco da função é somente leitura.
 
-Defina em *Project Settings → Environment Variables*:
+Opcionalmente, defina em *Project Settings → Environment Variables*:
 
-- `ADMIN_PASSWORD`: senha do usuário `admin` (sem ela, cada nova instância gera uma senha aleatória que só aparece nos logs).
+- `ADMIN_PASSWORD`: troca a senha padrão `admin123` do usuário `admin`.
 - `SESSION_SECRET`: texto aleatório longo para assinar os cookies de sessão.
 
 Limitações no Vercel: o banco temporário é recriado a partir de `data/seed-cards.json` sempre que uma nova instância sobe, então cards e usuários criados pelo painel não são permanentes, e as sessões ficam na memória de cada instância. Para um painel com dados permanentes, use um banco externo ou hospede o servidor em um serviço com disco persistente.
