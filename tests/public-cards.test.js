@@ -53,7 +53,7 @@ class FakeElement {
 }
 
 async function renderPublicCards(data) {
-  const publicCardsSource = fs.readFileSync(path.join(__dirname, '../js/public-cards.js'), 'utf8');
+  const publicCardsSource = fs.readFileSync(path.join(__dirname, '../public/js/public-cards.js'), 'utf8');
   const destinations = new FakeElement('div');
   const articles = new FakeElement('div');
   const empty = new FakeElement('p');

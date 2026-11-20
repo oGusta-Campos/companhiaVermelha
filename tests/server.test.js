@@ -58,7 +58,8 @@ async function startRealSiteServer(t) {
   const app = appModule.createApp({
     db,
     sessionSecret: 'test-only-session-secret-32-bytes-minimum',
-    publicDir: path.resolve(__dirname, '..')
+    publicDir: path.resolve(__dirname, '../public'),
+    adminDir: path.resolve(__dirname, '../admin')
   });
   const server = http.createServer(app);
   await new Promise((resolve, reject) => {

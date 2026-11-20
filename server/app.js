@@ -75,12 +75,13 @@ function sendError(res, error) {
   return res.status(500).json({ error: 'Não foi possível concluir a operação.' });
 }
 
-function createApp({ db, sessionSecret, publicDir }) {
+function createApp({ db, sessionSecret, publicDir, adminDir = path.join(publicDir, 'admin'), secureCookies = false }) {
   if (!db || !sessionSecret || !publicDir) throw new TypeError('Banco, segredo de sessão e pasta pública são obrigatórios.');
 
   const app = express();
   const auth = createAuthMiddleware(db);
   app.disable('x-powered-by');
+  if (secureCookies) app.set('trust proxy', 1);
   app.use(express.json({ limit: '32kb' }));
   app.use(session({
     name: 'companhia.sid',
@@ -90,7 +91,7 @@ function createApp({ db, sessionSecret, publicDir }) {
     cookie: {
       httpOnly: true,
       sameSite: 'strict',
-      secure: false,
+      secure: secureCookies,
       maxAge: 4 * 60 * 60 * 1000
     }
   }));
@@ -108,7 +109,7 @@ function createApp({ db, sessionSecret, publicDir }) {
     if (!req.session.userId) return res.redirect('/login.html?next=%2Fadmin');
     return auth.requireAdmin(req, res, next);
   }, (req, res) => {
-    res.sendFile(path.join(publicDir, 'admin', 'admin.html'), (error) => {
+    res.sendFile(path.join(adminDir, 'admin.html'), (error) => {
       if (error && !res.headersSent) res.status(error.statusCode || 404).send('Painel administrativo não encontrado.');
     });
   });
@@ -135,7 +136,7 @@ function createApp({ db, sessionSecret, publicDir }) {
     if (!req.session) return res.json({ authenticated: false });
     req.session.destroy((error) => {
       if (error) return res.status(500).json({ error: 'Não foi possível encerrar a sessão.' });
-      res.clearCookie('companhia.sid', { httpOnly: true, sameSite: 'strict', secure: false });
+      res.clearCookie('companhia.sid', { httpOnly: true, sameSite: 'strict', secure: secureCookies });
       return res.json({ authenticated: false });
     });
   });

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Destinos | Companhia Vermelha</title>
-<meta name="description" content="Conheça os destinos e compare Cuba, China e Vietnã.">
+<title>Caderno Vermelho | Companhia Vermelha</title>
+<meta name="description" content="Artigos sobre cultura, história e turismo nos destinos.">
 <link rel="icon" type="image/png" href="assets/images/logo-companhia-vermelha.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,10 +72,10 @@
 
     <nav class="hidden xl:flex items-center gap-5 font-semibold text-[13px] text-ink" aria-label="Navegação principal">
       <a href="index.html" class="nav-link">Início</a>
-      <a href="destinos.html" class="nav-link" aria-current="page">Destinos</a>
+      <a href="destinos.html" class="nav-link">Destinos</a>
       <a href="experiencias.html" class="nav-link">Experiências</a>
       <a href="roteiros.html" class="nav-link">Roteiros</a>
-      <a href="caderno.html" class="nav-link">Caderno Vermelho</a>
+      <a href="caderno.html" class="nav-link" aria-current="page">Caderno Vermelho</a>
       <a href="contato.html" class="nav-link">Contato</a>
     </nav>
 
@@ -94,10 +94,10 @@
   <div id="mobile-menu" class="xl:hidden max-h-0 opacity-0 overflow-hidden bg-white border-t border-line">
     <nav class="flex flex-col px-6 py-4 gap-1 font-medium" aria-label="Navegação móvel">
       <a href="index.html" class="mob-link py-2.5 border-b border-line">Início</a>
-      <a href="destinos.html" class="mob-link py-2.5 border-b border-line" aria-current="page">Destinos</a>
+      <a href="destinos.html" class="mob-link py-2.5 border-b border-line">Destinos</a>
       <a href="experiencias.html" class="mob-link py-2.5 border-b border-line">Experiências</a>
       <a href="roteiros.html" class="mob-link py-2.5 border-b border-line">Roteiros</a>
-      <a href="caderno.html" class="mob-link py-2.5 border-b border-line">Caderno Vermelho</a>
+      <a href="caderno.html" class="mob-link py-2.5 border-b border-line" aria-current="page">Caderno Vermelho</a>
       <a href="contato.html" class="mob-link py-2.5 border-b border-line">Contato</a>
       <a href="contato.html#planejar" class="mob-link btn-primary text-center rounded-full px-5 py-3 mt-4 font-display font-semibold">Planejar minha viagem</a>
     </nav>
@@ -105,146 +105,98 @@
 </header>
 
 <main id="conteudo">
-<section id="destinos" class="py-24 md:py-28 bg-white">
+<section id="blog" class="py-24 md:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-5 md:px-8">
     <div class="max-w-2xl reveal">
-      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Destinos</p>
-      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Explore nossos destinos</h2>
+      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Editorial</p>
+      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Caderno Vermelho</h2>
+      <p class="mt-4 text-inksoft text-[15px]">Conteúdo para conhecer antes de viajar.</p>
     </div>
 
-    <div class="mt-14 country-banners">
-      <!-- Cuba -->
-      <article class="dest-card country-banner reveal group">
-        <img src="assets/images/cuba.jpg" alt="Carros clássicos diante de fachadas coloridas em Havana, Cuba" class="destination-photo" loading="lazy">
-        <div class="country-banner-overlay" aria-hidden="true"></div>
-        <div class="country-banner-content">
-          <span class="country-banner-label">Havana · Cuba</span>
-          <h3 class="font-display font-800 text-3xl md:text-4xl">Cuba</h3>
-          <p>História, arquitetura, música, cultura caribenha e uma sociedade única para conhecer de perto.</p>
-          <div class="country-banner-tags" aria-label="Destaques de Cuba">
-            <span>Cultura</span><span>História</span><span>Arquitetura</span><span>Pesquisa</span><span>Turismo</span>
-          </div>
-          <a href="contato.html?destino=Cuba#planejar" data-destino="Cuba" class="dest-cta">
-            Conhecer Cuba <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
-          </a>
-        </div>
-      </article>
+    <div class="mt-10 flex flex-wrap gap-2.5 reveal" id="blog-filters">
+      <button class="tag-pill active rounded-full px-4 py-1.5 text-sm font-medium" data-filter="todos">Todos</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="cuba">Cuba</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="china">China</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="vietna">Vietnã</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="historia">História</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="cultura">Cultura</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="educacao">Educação</button>
+      <button class="tag-pill rounded-full px-4 py-1.5 text-sm font-medium" data-filter="turismo">Turismo</button>
+    </div>
 
-      <!-- China -->
-      <article class="dest-card country-banner reveal group" style="transition-delay:.08s">
-        <img src="assets/images/china.jpg" alt="Grande Muralha atravessando as montanhas da China" class="destination-photo" loading="lazy">
-        <div class="country-banner-overlay" aria-hidden="true"></div>
-        <div class="country-banner-content">
-          <span class="country-banner-label">Grande Muralha · China</span>
-          <h3 class="font-display font-800 text-3xl md:text-4xl">China</h3>
-          <p>Uma jornada entre tradições milenares, megacidades, inovação tecnológica e transformações sociais.</p>
-          <div class="country-banner-tags" aria-label="Destaques da China">
-            <span>História</span><span>Tecnologia</span><span>Cultura</span><span>Economia</span><span>Turismo</span>
-          </div>
-          <a href="contato.html?destino=China#planejar" data-destino="China" class="dest-cta">
-            Conhecer China <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
-          </a>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-grid">
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="cuba cultura turismo">
+        <div class="blog-card-media h-36">
+          <img class="blog-card-image" src="assets/images/cuba.jpg" alt="Vista colorida de Havana, em Cuba" loading="lazy" width="1200" height="800">
         </div>
+        <div class="p-6">
+          <p class="blog-card-category text-xs font-semibold text-red uppercase tracking-wide">Cuba</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">O que conhecer em Havana além dos pontos turísticos tradicionais</h3>
+          <p class="blog-card-summary mt-2 text-[13.5px] text-inksoft leading-relaxed">Bairros, ateliês e rotinas locais que revelam uma Havana pouco vista pelos roteiros comuns.</p>
+        </div>
+        <button type="button" class="blog-card-trigger" aria-label="Ler artigo: O que conhecer em Havana além dos pontos turísticos tradicionais" data-article-key="havana"><span class="sr-only">Ler artigo</span></button>
       </article>
-
-      <!-- Vietnã -->
-      <article class="dest-card country-banner reveal group" style="transition-delay:.16s">
-        <img src="assets/images/vietna.jpg" alt="Formações rochosas e barcos na Baía de Ha Long, Vietnã" class="destination-photo" loading="lazy">
-        <div class="country-banner-overlay" aria-hidden="true"></div>
-        <div class="country-banner-content">
-          <span class="country-banner-label">Baía de Ha Long · Vietnã</span>
-          <h3 class="font-display font-800 text-3xl md:text-4xl">Vietnã</h3>
-          <p>Conheça um país marcado por história, crescimento econômico, cultura vibrante e paisagens impressionantes.</p>
-          <div class="country-banner-tags" aria-label="Destaques do Vietnã">
-            <span>Natureza</span><span>História</span><span>Cultura</span><span>Gastronomia</span><span>Turismo</span>
-          </div>
-          <a href="contato.html?destino=Vietn%C3%A3#planejar" data-destino="Vietnã" class="dest-cta">
-            Conhecer Vietnã <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
-          </a>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="china turismo cultura">
+        <div class="blog-card-media h-36">
+          <img class="blog-card-image" src="assets/images/china.jpg" alt="Paisagem urbana e histórica da China" loading="lazy" width="1200" height="800">
         </div>
+        <div class="p-6">
+          <p class="blog-card-category text-xs font-semibold text-gold-deep uppercase tracking-wide">China</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">Pequim ou Xangai: qual cidade visitar primeiro?</h3>
+          <p class="blog-card-summary mt-2 text-[13.5px] text-inksoft leading-relaxed">Um comparativo direto entre a capital histórica e a metrópole futurista.</p>
+        </div>
+        <button type="button" class="blog-card-trigger" aria-label="Ler artigo: Pequim ou Xangai: qual cidade visitar primeiro?" data-article-key="pequim-xangai"><span class="sr-only">Ler artigo</span></button>
+      </article>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="vietna cultura turismo">
+        <div class="blog-card-media h-36">
+          <img class="blog-card-image" src="assets/images/vietna.jpg" alt="Paisagem cultural do Vietnã" loading="lazy" width="1200" height="800">
+        </div>
+        <div class="p-6">
+          <p class="blog-card-category text-xs font-semibold text-ink uppercase tracking-wide">Vietnã</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">10 experiências culturais para conhecer no Vietnã</h3>
+          <p class="blog-card-summary mt-2 text-[13.5px] text-inksoft leading-relaxed">De mercados flutuantes a cerimônias tradicionais, um guia prático de vivências.</p>
+        </div>
+        <button type="button" class="blog-card-trigger" aria-label="Ler artigo: 10 experiências culturais para conhecer no Vietnã" data-article-key="vietna"><span class="sr-only">Ler artigo</span></button>
+      </article>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="educacao" style="transition-delay:.06s">
+        <div class="h-36" style="background:linear-gradient(135deg,#7A1029,#B4933A);"></div>
+        <div class="p-6">
+          <p class="blog-card-category text-xs font-semibold text-red uppercase tracking-wide">Educação</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">Como funciona uma viagem acadêmica internacional</h3>
+          <p class="blog-card-summary mt-2 text-[13.5px] text-inksoft leading-relaxed">Etapas de planejamento, documentação e estrutura de um roteiro acadêmico.</p>
+        </div>
+        <button type="button" class="blog-card-trigger" aria-label="Ler artigo: Como funciona uma viagem acadêmica internacional" data-article-key="academica"><span class="sr-only">Ler artigo</span></button>
+      </article>
+      <article class="blog-card reveal rounded-[18px] border border-line overflow-hidden bg-white" data-tags="china cultura historia" style="transition-delay:.12s">
+        <div class="h-36" style="background:linear-gradient(135deg,#B8203C,#B4933A);"></div>
+        <div class="p-6">
+          <p class="blog-card-category text-xs font-semibold text-gold-deep uppercase tracking-wide">China</p>
+          <h3 class="font-display font-700 text-[17px] mt-2 leading-snug">China: tradição e tecnologia na mesma viagem</h3>
+          <p class="blog-card-summary mt-2 text-[13.5px] text-inksoft leading-relaxed">Como um mesmo roteiro pode passar por templos milenares e polos de inovação.</p>
+        </div>
+        <button type="button" class="blog-card-trigger" aria-label="Ler artigo: China: tradição e tecnologia na mesma viagem" data-article-key="china-atual"><span class="sr-only">Ler artigo</span></button>
       </article>
     </div>
+    <p id="blog-empty" class="hidden mt-10 text-inksoft text-sm">Nenhum artigo encontrado para esse filtro.</p>
   </div>
 </section>
-
-<section class="py-24 md:py-28 bg-mist">
-  <div class="max-w-7xl mx-auto px-5 md:px-8">
-    <div class="max-w-2xl reveal">
-      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Comparador</p>
-      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Compare os destinos</h2>
-      <p class="mt-4 text-inksoft text-[15px]">Uma visão rápida do perfil de cada país para ajudar na sua escolha.</p>
+<dialog id="article-modal" class="blog-modal" aria-labelledby="article-modal-title">
+  <div class="blog-modal-inner">
+    <div id="article-modal-media" class="blog-modal-media">
+      <img id="article-modal-image" class="blog-modal-image" alt="" hidden>
+      <button id="article-modal-close" type="button" class="blog-modal-close" aria-label="Fechar artigo">
+        <svg class="w-5 h-5" aria-hidden="true"><use href="#ic-close"/></svg>
+      </button>
     </div>
-
-    <div class="mt-12 bg-white rounded-[20px] border border-line p-6 md:p-10 reveal">
-      <div class="flex items-center gap-6 mb-8 text-sm font-semibold font-display flex-wrap">
-        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-red inline-block"></span>Cuba</span>
-        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-gold inline-block"></span>China</span>
-        <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-ink inline-block"></span>Vietnã</span>
-      </div>
-
-      <div class="space-y-6" id="comparador-rows">
-        <!-- rows injected identically in markup for no-js resilience -->
-      </div>
+    <div class="blog-modal-content">
+      <p id="article-modal-category" class="text-xs font-semibold text-red uppercase tracking-wide"></p>
+      <h2 id="article-modal-title" class="font-display font-800 text-2xl md:text-3xl leading-tight mt-2"></h2>
+      <p id="article-modal-summary" class="mt-4 text-inksoft leading-relaxed"></p>
+      <h3 class="font-display font-700 text-lg mt-7">Neste artigo</h3>
+      <ul id="article-modal-points" class="blog-modal-points mt-3"></ul>
     </div>
   </div>
-</section>
-
-<section id="mapa" class="py-24 md:py-28 bg-mist">
-  <div class="max-w-7xl mx-auto px-5 md:px-8">
-    <div class="max-w-2xl reveal">
-      <p class="text-red font-display font-semibold text-sm uppercase tracking-wide mb-3">Mapa</p>
-      <h2 class="font-display font-800 text-3xl md:text-[2.6rem] leading-tight tracking-tight">Onde estamos indo?</h2>
-    </div>
-
-    <div class="mt-12 grid lg:grid-cols-5 gap-8 items-start">
-      <div class="lg:col-span-3 reveal bg-white rounded-[20px] border border-line p-4 md:p-8">
-        <svg viewBox="0 0 1000 460" class="w-full h-auto" role="img" aria-label="Mapa estilizado destacando Cuba, China e Vietnã">
-          <defs>
-            <pattern id="dotgrid" width="24" height="24" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1.4" fill="#E8E4DE"/>
-            </pattern>
-          </defs>
-          <rect x="0" y="0" width="1000" height="460" fill="url(#dotgrid)"/>
-          <path d="M120 120 C 220 60, 340 90, 380 170 C 420 250, 340 300, 260 280 C 180 260, 80 220, 120 120 Z" fill="#F6EFDA" opacity=".7"/>
-          <path d="M600 80 C 740 40, 880 100, 860 200 C 840 300, 700 320, 640 260 C 580 200, 560 130, 600 80 Z" fill="#FBEAEE" opacity=".7"/>
-          <path d="M680 260 C 740 250, 780 320, 750 380 C 720 420, 660 400, 650 350 C 640 300, 630 270, 680 260 Z" fill="#F6EFDA" opacity=".7"/>
-
-          <g>
-            <line x1="230" y1="190" x2="620" y2="150" class="route-dash" stroke="#B4933A" stroke-width="1.5" fill="none"/>
-            <line x1="620" y1="150" x2="700" y2="300" class="route-dash" stroke="#B4933A" stroke-width="1.5" fill="none" style="animation-delay:.5s"/>
-          </g>
-
-          <button class="marker-btn" data-country="cuba" tabindex="-1" aria-hidden="true" style="all:unset">
-            <circle class="marker-dot" cx="230" cy="190" r="9" fill="#B8203C"/>
-          </button>
-        </svg>
-        <div class="flex justify-center gap-4 mt-2" role="group" aria-label="Selecionar destino no mapa">
-          <button class="marker-btn flex items-center gap-2 rounded-full px-4 py-2 border border-line text-sm font-semibold font-display" data-country="cuba" data-active="true">
-            <span class="marker-dot w-2.5 h-2.5 rounded-full bg-red inline-block"></span>Cuba
-          </button>
-          <button class="marker-btn flex items-center gap-2 rounded-full px-4 py-2 border border-line text-sm font-semibold font-display" data-country="china">
-            <span class="marker-dot w-2.5 h-2.5 rounded-full bg-gold inline-block"></span>China
-          </button>
-          <button class="marker-btn flex items-center gap-2 rounded-full px-4 py-2 border border-line text-sm font-semibold font-display" data-country="vietna">
-            <span class="marker-dot w-2.5 h-2.5 rounded-full bg-ink inline-block"></span>Vietnã
-          </button>
-        </div>
-      </div>
-
-      <div class="lg:col-span-2 reveal bg-white rounded-[20px] border border-line p-8" id="map-panel">
-        <h3 class="font-display font-800 text-2xl" id="map-name">Cuba</h3>
-        <dl class="mt-5 space-y-3 text-[14.5px]">
-          <div class="flex justify-between gap-4"><dt class="text-inksoft">Capital</dt><dd class="font-medium" id="map-capital">Havana</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-inksoft">Principais destinos</dt><dd class="font-medium text-right" id="map-destinos">Havana, Varadero, Trinidad</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-inksoft">Duração média</dt><dd class="font-medium" id="map-duracao">7–10 dias</dd></div>
-        </dl>
-        <a href="contato.html?destino=Cuba#planejar" id="map-explorar" data-destino="Cuba" class="mt-7 inline-flex btn-primary items-center gap-2 rounded-full px-6 py-3 font-display font-semibold text-sm">
-          Explorar <svg class="w-4 h-4"><use href="#ic-arrow-right"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+</dialog>
 </main>
 <!-- FOOTER -->
 <footer class="bg-ink text-white/70 pt-20 pb-10">
@@ -302,5 +254,7 @@
 
 <a href="contato.html#contato" class="float-btn fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-red text-white flex items-center justify-center hover:bg-red-deep transition-colors" aria-label="Ir para contato"><svg class="w-6 h-6"><use href="#ic-message"/></svg></a>
 <script src="js/main.js" defer></script>
+<script src="/js/auth.js" defer></script>
+<script src="/js/public-cards.js" defer></script>
 </body>
 </html>

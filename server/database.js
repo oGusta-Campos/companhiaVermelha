@@ -93,7 +93,7 @@ function validateUser({ username, password, role }) {
   if (!USER_ROLES.has(role)) throw new TypeError('Papel de usuário inválido.');
 }
 
-function initializeDatabase(dbPath, seedPath) {
+function initializeDatabase(dbPath, seedPath, { adminPassword } = {}) {
   fs.mkdirSync(path.dirname(dbPath), { recursive: true });
   const connection = new DatabaseSync(dbPath);
   connection.exec(`
@@ -157,8 +157,9 @@ function initializeDatabase(dbPath, seedPath) {
   let initialAdminPassword = null;
   const adminCount = connection.prepare("SELECT COUNT(*) AS total FROM users WHERE role = 'admin'").get().total;
   if (adminCount === 0) {
-    initialAdminPassword = crypto.randomBytes(24).toString('base64url');
-    const { passwordHash, passwordSalt } = hashPassword(initialAdminPassword);
+    const password = typeof adminPassword === 'string' && adminPassword ? adminPassword : crypto.randomBytes(24).toString('base64url');
+    if (password !== adminPassword) initialAdminPassword = password;
+    const { passwordHash, passwordSalt } = hashPassword(password);
     connection.prepare(`
       INSERT INTO users (username, password_hash, password_salt, role)
       VALUES (?, ?, ?, 'admin')
